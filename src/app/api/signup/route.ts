@@ -1,4 +1,4 @@
-// app/api/signup/route.ts
+// src/app/api/signup/route.ts
 import { hash } from "bcryptjs";
 import { PrismaClient } from "@/db"; // Adjust path as needed
 

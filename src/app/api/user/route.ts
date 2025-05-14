@@ -1,3 +1,4 @@
+// src/app/api/user/route.ts
 import { getServerSession } from "next-auth/next";
 import { NEXT_AUTH } from "./../lib/auth";
 export async function GET (){

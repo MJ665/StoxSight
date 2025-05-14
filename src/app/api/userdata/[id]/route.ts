@@ -2,6 +2,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@/db"; // make sure prisma is setup
 const prisma  = new PrismaClient()
+
+
+
 export async function PUT(req: NextRequest, context: { params: { id: string } }) {
     const userId = parseInt(context.params.id); // ✅ proper access
   

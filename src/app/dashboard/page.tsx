@@ -39,6 +39,17 @@ export default function DashboardPage() {
           Log Out
         </button>
       </div>
+
+
+<button
+  onClick={() => router.push('/user')}
+  className="rounded px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 mt-4"
+>
+  Edit Profile
+</button>
+
     </div>
+
+    
   );
 }

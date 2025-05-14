@@ -1,3 +1,4 @@
+// src/app/api/lib/auth.ts
 // lib/auth.ts
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";

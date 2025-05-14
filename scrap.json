@@ -1,0 +1,635 @@
+{
+    "message": "Processing complete.",
+    "run_id": "752eee4a-26ef-4dc9-9b35-03fcc8c5a1ff",
+    "lstm_results": {
+        "training_loss": [
+            0.06289977580308914,
+            0.014583117328584194
+        ],
+        "test_metrics": {
+            "mae": 188.6756888210183,
+            "r2_score": -69.42237621528771
+        },
+        "future_predictions": {
+            "2023-12-30": 692.23486328125,
+            "2023-12-31": 697.69775390625,
+            "2024-01-01": 705.1287231445312,
+            "2024-01-02": 716.247802734375,
+            "2024-01-03": 732.4805908203125,
+            "2024-01-04": 755.2794799804688,
+            "2024-01-05": 787.2835083007812,
+            "2024-01-06": 831.9547119140625,
+            "2024-01-07": 893.5540161132812,
+            "2024-01-08": 977.9854736328125,
+            "2024-01-09": 1096.3177490234375,
+            "2024-01-10": 1262.5699462890625,
+            "2024-01-11": 1508.229736328125,
+            "2024-01-12": 1892.3385009765625,
+            "2024-01-13": 2525.01708984375,
+            "2024-01-14": 3643.27783203125,
+            "2024-01-15": 5666.3203125,
+            "2024-01-16": 9162.759765625,
+            "2024-01-17": 15172.189453125,
+            "2024-01-18": 26460.912109375,
+            "2024-01-19": 42836.58984375,
+            "2024-01-20": 66169.171875,
+            "2024-01-21": 105283.6171875,
+            "2024-01-22": 177527.0625,
+            "2024-01-23": 231152.984375,
+            "2024-01-24": 356647.6875,
+            "2024-01-25": 675529.3125,
+            "2024-01-26": 796334.0625,
+            "2024-01-27": 1622125.0,
+            "2024-01-28": 2606146.75,
+            "2024-01-29": 3036855.5,
+            "2024-01-30": 5413465.5,
+            "2024-01-31": 8167829.0,
+            "2024-02-01": 11066494.0,
+            "2024-02-02": 15673199.0,
+            "2024-02-03": 21802708.0,
+            "2024-02-04": 35374760.0,
+            "2024-02-05": 63709628.0,
+            "2024-02-06": 106597144.0,
+            "2024-02-07": 161466384.0,
+            "2024-02-08": 257939712.0,
+            "2024-02-09": 331317888.0,
+            "2024-02-10": 837898112.0,
+            "2024-02-11": 1302767360.0,
+            "2024-02-12": 1896871040.0,
+            "2024-02-13": 4322950144.0,
+            "2024-02-14": 6856652288.0,
+            "2024-02-15": 9337297920.0,
+            "2024-02-16": 16901600256.0,
+            "2024-02-17": 26155606016.0,
+            "2024-02-18": 50915864576.0,
+            "2024-02-19": 81365491712.0,
+            "2024-02-20": 68421722112.0,
+            "2024-02-21": 101284683776.0,
+            "2024-02-22": 171720228864.0,
+            "2024-02-23": 397940260864.0,
+            "2024-02-24": 402953175040.0,
+            "2024-02-25": 693162803200.0,
+            "2024-02-26": 977666179072.0,
+            "2024-02-27": 1898542399488.0
+        }
+    },
+    "polynomial_results": {
+        "test_metrics": {
+            "mae": 37.07354419044413,
+            "r2_score": -2.8177321599986644
+        },
+        "future_predictions": {
+            "2023-12-30": 556.2445411126255,
+            "2023-12-31": 556.9422343684315,
+            "2024-01-01": 557.6407261158689,
+            "2024-01-02": 558.3400167109316,
+            "2024-01-03": 559.0401065096138,
+            "2024-01-04": 559.740995867909,
+            "2024-01-05": 560.4426851418114,
+            "2024-01-06": 561.1451746873148,
+            "2024-01-07": 561.8484648604133,
+            "2024-01-08": 562.5525560171006,
+            "2024-01-09": 563.2574485133708,
+            "2024-01-10": 563.9631427052179,
+            "2024-01-11": 564.6696389486357,
+            "2024-01-12": 565.3769375996181,
+            "2024-01-13": 566.0850390141592,
+            "2024-01-14": 566.7939435482526,
+            "2024-01-15": 567.5036515578927,
+            "2024-01-16": 568.214163399073,
+            "2024-01-17": 568.9254794277875,
+            "2024-01-18": 569.6376000000306,
+            "2024-01-19": 570.3505254717955,
+            "2024-01-20": 571.0642561990767,
+            "2024-01-21": 571.7787925378678,
+            "2024-01-22": 572.4941348441631,
+            "2024-01-23": 573.2102834739561,
+            "2024-01-24": 573.9272387832409,
+            "2024-01-25": 574.6450011280116,
+            "2024-01-26": 575.3635708642619,
+            "2024-01-27": 576.0829483479857,
+            "2024-01-28": 576.8031339351772,
+            "2024-01-29": 577.5241279818301,
+            "2024-01-30": 578.2459308439386,
+            "2024-01-31": 578.9685428774961,
+            "2024-02-01": 579.6919644384972,
+            "2024-02-02": 580.4161958829352,
+            "2024-02-03": 581.1412375668045,
+            "2024-02-04": 581.8670898460988,
+            "2024-02-05": 582.5937530768122,
+            "2024-02-06": 583.3212276149385,
+            "2024-02-07": 584.0495138164715,
+            "2024-02-08": 584.7786120374054,
+            "2024-02-09": 585.508522633734,
+            "2024-02-10": 586.2392459614513,
+            "2024-02-11": 586.970782376551,
+            "2024-02-12": 587.7031322350274,
+            "2024-02-13": 588.4362958928742,
+            "2024-02-14": 589.1702737060853,
+            "2024-02-15": 589.9050660306547,
+            "2024-02-16": 590.6406732225764,
+            "2024-02-17": 591.3770956378443,
+            "2024-02-18": 592.1143336324521,
+            "2024-02-19": 592.852387562394,
+            "2024-02-20": 593.5912577836639,
+            "2024-02-21": 594.3309446522557,
+            "2024-02-22": 595.0714485241632,
+            "2024-02-23": 595.8127697553806,
+            "2024-02-24": 596.5549087019016,
+            "2024-02-25": 597.2978657197201,
+            "2024-02-26": 598.0416411648304,
+            "2024-02-27": 598.7862353932259
+        }
+    },
+    "trading_suggestion_tomorrow": {
+        "signal": "BUY",
+        "predicted_price_lstm": 692.23486328125,
+        "last_actual_price": 462.1,
+        "percentage_change": 49.80196132465915,
+        "reason": "Predicted LSTM price for tomorrow: 692.23. Last close: 462.10 on 2023-12-29. Change: +49.80% (>0.5%)"
+    },
+    "ai_qualitative_analysis": {
+        "stockSymbol": "ITC",
+        "analysisDate": "2023-12-29",
+        "overallSentiment": "Neutral",
+        "sentimentRationale": "While the LSTM model predicts a significant price increase in the short term and generates a BUY signal, its test performance shows considerable divergence from actual prices. The polynomial regression offers a more moderate, but still upward, prediction, leading to an overall neutral sentiment due to the conflicting signals and varying reliability of the models.",
+        "dataSummary": {
+            "lastActualClose": "462.10",
+            "lastActualDate": "2023-12-29"
+        },
+        "lstmModelAnalysis": {
+            "performanceOnTest": "Shows considerable divergence from actual prices during the test period, indicating a potential lack of accuracy in predicting short-term fluctuations.",
+            "futureOutlook": "Predicts a very significant upward trend in the near future, with substantial price increases projected over the next week. This prediction appears overly optimistic given the model's past performance.",
+            "confidenceInOutlook": "Low"
+        },
+        "polynomialRegressionAnalysis": {
+            "performanceOnTest": "Provides a smooth trendline, but underestimates the actual price fluctuations during the test period. It appears to capture the general direction but lacks precision.",
+            "futureOutlook": "Suggests continued growth along the established trend, but at a much more moderate pace than the LSTM model. The predicted increases are far less dramatic.",
+            "confidenceInOutlook": "Medium"
+        },
+        "combinedOutlook": {
+            "shortTermForecastSynopsis": "The models present significantly different short-term forecasts. The LSTM predicts a large price surge, while the polynomial regression forecasts a more gradual increase. This divergence creates uncertainty.",
+            "keyObservations": [
+                "LSTM's high predicted price for tomorrow significantly influences the BUY signal.",
+                "The polynomial regression model offers a more conservative outlook, suggesting steady but less aggressive growth.",
+                "LSTM's test performance raises concerns about the reliability of its future predictions, particularly the magnitude of the predicted price jump.",
+                "Both models suggest an upward trend, albeit with vastly different magnitudes, potentially indicating overall bullish sentiment."
+            ]
+        },
+        "riskFactors": [
+            "Model-based predictions are inherently uncertain and based on past data, which may not reflect future market conditions.",
+            "Polynomial regression is prone to poor extrapolation beyond the observed data range, especially with higher degrees.",
+            "LSTM models can be sensitive to input data and may not capture sudden market shocks or events not present in training data.",
+            "The 'Buy/Sell' suggestion is a simple heuristic and not comprehensive financial advice."
+        ],
+        "disclaimer": "This AI-generated analysis is for informational purposes only and not financial advice. Predictions are speculative. Consult a qualified financial advisor before making investment decisions."
+    },
+    "plot_urls": {
+        "lstm_test_plot": "/static/plots/752eee4a-26ef-4dc9-9b35-03fcc8c5a1ff_lstm_test_predictions.png",
+        "lstm_future_plot": "/static/plots/752eee4a-26ef-4dc9-9b35-03fcc8c5a1ff_lstm_future_predictions.png",
+        "polynomial_plot": "/static/plots/752eee4a-26ef-4dc9-9b35-03fcc8c5a1ff_polynomial_regression.png"
+    },
+    "pdf_report_url": "/reports/752eee4a-26ef-4dc9-9b35-03fcc8c5a1ff_report.pdf"
+}%                                                               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "success": true,
+    "result": "## Stox Sight: Tata Consultancy Services (TCS) Stock Analysis Report\n\n**1. Executive Summary:**\n\nTata Consultancy Services' (TCS) future outlook presents a mixed picture. While the company boasts strong profitability metrics, indicated by a high ROE (52.4%) and ROCE (64.6%), its sales growth has been weak (10.2% over five years).  Based on the available data, a definitive buy/sell/hold recommendation is difficult to provide without a deeper dive into sector-specific factors.  Further monitoring is advised.\n\n\n**2. Company Overview:**\n\nTata Consultancy Services Ltd. is an IT - Software company operating in the Computers - Software - Large industry.  It is listed on the BSE and NSE exchanges in India.\n\n\n**3. Detailed Analysis:**\n\n* **Financial Health:** TCS shows high profitability with ROE at 52.4% and ROCE at 64.6%. However, the company's sales growth is concerning, at only 10.2% over the past five years. This contrasts with the high profitability, suggesting potential inefficiencies or other factors at play that are not evident in this data.  The available data shows Revenue figures for the past years ranging from ₹81,809 Cr. to ₹225,458 Cr. and Operating Profit ranging from ₹25,153 Cr to ₹59,259 Cr (figures in Rs. Crores).\n\n* **Valuation:** TCS has a Price-to-Earnings (P/E) ratio of 26.5 and a book value of ₹262.  The stock is trading at 13.6 times its book value, which is considered a relatively high valuation. Peer comparison data was not fully loaded in the provided scraped data, preventing a direct comparison against competitors.\n\n* **Pros & Cons:**\n    * **Pros:** High return on equity (ROE) track record (3-year average 50.3%),  maintained healthy dividend payout of 83.3%.\n    * **Cons:** High book value (13.6 times book value),  poor sales growth (10.2% over past five years).\n\n* **Other Key Information:** TCS is a constituent of major Indian indices like BSE Sensex, Nifty 50, BSE 500, BSE Information Technology, and BSE 100, indicating its significance in the Indian market. The dividend yield is 1.55%.\n\n\n**4. Recommendation & Justification:**\n\nGiven the limited data and the contradictory signals of high profitability alongside weak sales growth, a clear recommendation is not possible. Further monitoring is advised to understand the underlying reasons for this discrepancy before making any investment decisions.  A more comprehensive analysis, including peer comparisons and industry-level data, would be beneficial.\n\n\n**5. Potential Risks & Considerations:**\n\nThe primary risk is the persistently poor sales growth of 10.2% over five years, which raises concerns about the company's future revenue generation potential and sustainability of its high profitability.  The high valuation (13.6x book value) also poses a risk, potentially indicating an overvalued stock.  The analysis relies solely on historical data and does not predict future performance.\n\n**6. Important Disclaimer:**\n\nDisclaimer: This analysis is AI-generated for informational purposes only and is not financial advice. Stock market investments involve risks. Consult a qualified financial advisor before investing. Stox Sight is not liable for decisions based on this information.\n",
+    "conclusion": {
+        "symbol": "TCS",
+        "currentPriceNSE": "3547",
+        "overallSentimentScore": "Neutral",
+        "keyInsightsSummary": "TCS presents a mixed outlook. While strong profitability metrics such as high ROE and ROCE are positives, weak sales growth and high valuation raise concerns. The provided data suggests further monitoring is required before making investment decisions, as the data presents contradictory signals.",
+        "potentialActionableSignals": [
+            {
+                "indicatorType": "Valuation_HighPB",
+                "signalStrength": "Medium",
+                "description": "Screener.in data shows a Price-to-Book ratio of 13.6, which is considered high. This suggests that the stock might be overvalued compared to its book value, potentially limiting upside.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Medium-term (3-12mo)"
+            },
+            {
+                "indicatorType": "Growth_PositiveTrend",
+                "signalStrength": "Low",
+                "description": "Despite a poor 5-year sales growth of 10.2% reported by Screener.in, quarterly revenue figures have shown a recent increasing trend from Mar 2022 (50,591 Cr) to Mar 2025 (64,479 Cr). This might suggest improving sales but the signal strength is low given the longer term trend.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Medium-term (3-12mo)"
+            },
+            {
+                "indicatorType": "Dividend_Attractive",
+                "signalStrength": "Medium",
+                "description": "TCS has maintained a healthy dividend payout of 83.3% according to Screener.in data. This high dividend payout suggests an attractive income stream for investors, supporting the stock price.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Long-term (1yr+)"
+            },
+            {
+                "indicatorType": "FinancialHealth_ROCE",
+                "signalStrength": "High",
+                "description": "The ROCE is very high at 64.6%. This high ROCE suggests efficient capital utilization and indicates strong profitability, supporting a positive outlook.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Long-term (1yr+)"
+            }
+        ],
+        "entryPointConsiderations": {
+            "currentValuationAssessment": "Appears overvalued based on Screener's P/B (13.6), though P/E (26.5) might be justified by growth. NSE current price is 3547.",
+            "speculativeGoodPriceRangeLower": "Based on recent NSE low not found because the the historical low isn't given (NSE 52 week low data unavailable), a retest could be an entry zone.",
+            "speculativeGoodPriceRangeUpper": "Data provided wasn't sufficient for forward P/E. Therefore speculative upper bound of fair price range is unavailable.",
+            "technicalLevelsToWatchNSE": {
+                "recentDayLow": "Data not available in provided context",
+                "recentDayHigh": "Data not available in provided context",
+                "52WeekLow": "Data not available in provided context",
+                "52WeekHigh": "Data not available in provided context"
+            },
+            "rationale": "Given the current valuation assessment, a potential entry might be considered if the price dips to a support level. Alternatively, a breakout above resistance could signal further upside. Detailed technical entry points cannot be determined due to limited NSE market data provided (e.g., missing SMAs or detailed historical price patterns)."
+        },
+        "seasonalPatternsObserved": {
+            "typicallyStrongQuarters": [
+                "Insufficient data for reliable quarterly pattern identification (13 data points provided)."
+            ],
+            "typicallyWeakQuarters": [
+                "Insufficient data for reliable quarterly pattern identification (13 data points provided)."
+            ],
+            "monthlyTrendNotes": "No clear persistent monthly pattern observed from the limited NSE data."
+        },
+        "corporateActionsNSE": [],
+        "riskFactorsForTimingAndInvestment": [
+            "Screener.in reports poor sales growth over the past five years, which raises concerns about future revenue generation.",
+            "NSE data shows the stock is trading near its recent price of 3547, suggesting potential for resistance.",
+            "Limited recent price history from NSE makes short-term trend analysis difficult."
+        ],
+        "analystConsensusNSE": {
+            "recommendation": "Analyst consensus data not provided in the NSE summary.",
+            "numberOfAnalysts": "Analyst consensus data not provided in the NSE summary.",
+            "targetPriceMean": "Analyst consensus data not provided in the NSE summary."
+        },
+        "dataConfidenceLevel": "Medium",
+        "finalWordOfCaution": "This AI synthesizes provided data to offer speculative insights. It does not possess real-time market awareness or professional financial advisory capabilities. All outputs are interpretations and estimations.",
+        "disclaimer": "IMPORTANT: This is an AI-generated speculative outlook based on limited historical data and analysis. It is NOT financial advice. Prices and market conditions can change rapidly. Consult a qualified financial advisor. Stox Sight is not liable for any decisions."
+    }
+}%           
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "success": true,
+    "result": "## Stox Sight: Tata Consultancy Services (TCS) Stock Analysis Report\n\n**1. Executive Summary:**\n\nThe future outlook for Tata Consultancy Services (TCS) is mixed. While the company boasts strong financial health indicators like high ROE (52.4%) and ROCE (64.6%),  slow sales growth (10.2% over five years) and a high P/E ratio (25.6) raise concerns.  Further analysis is needed to determine whether the current valuation justifies investment.\n\n\n**2. Company Overview:**\n\nTata Consultancy Services Ltd. is an IT - Software company (as per screener.in data). It is listed on both the BSE and NSE exchanges in India and is a constituent of major indices including the BSE Sensex, Nifty 50, BSE 500, BSE Information Technology, and BSE 100.\n\n\n**3. Detailed Analysis:**\n\n* **Financial Health:** TCS exhibits a high return on equity (ROE) of 52.4% and return on capital employed (ROCE) of 64.6%, indicating efficient use of shareholder equity and capital. However, sales growth has been sluggish at 10.2% over the past five years, a key weakness highlighted in the Initial Ideas.  While the scraped data provides quarterly revenue figures (in crores), detailed profit and cash flow data is lacking to provide comprehensive analysis.\n\n* **Valuation:** The stock's P/E ratio is 25.6, and its book value is ₹262.  The scraped data mentions the stock is trading at 13.1 times its book value, suggesting a potentially high valuation.  Peer comparisons are loading in the scraped data and hence are unavailable for analysis.\n\n* **Pros & Cons:**\n    * **Pros (from Scraped Data):** High ROE (50.3% over 3 years), healthy dividend payout (83.3%).\n    * **Cons (from Scraped Data):**  Stock trading at 13.1 times book value, poor sales growth (10.2% over five years).\n\n* **Other Key Information:** The company has a market capitalization of ₹12,44,731 Cr and the current price is ₹3,440.  The dividend yield is 1.60%.  The  NSE data shows a last price of 3439.9 and a previous close of 3448.9.\n\n**4. Recommendation & Justification:**\n\nGiven the mixed signals, *Further Monitoring Advised*. While the high ROE and ROCE suggest strong fundamentals, the slow sales growth and high valuation based on the P/E and book value multiples are significant concerns that require further investigation before a buy or sell recommendation can be made.  More detailed financial data is needed to thoroughly assess the current valuation and future prospects.\n\n**5. Potential Risks & Considerations:**\n\nKey risks include slow revenue growth and the potential for overvaluation relative to peers (pending peer comparison data).  The analysis is limited by the availability of data; it relies solely on historical information and does not predict future performance.\n\n**6. Important Disclaimer:**\n\nDisclaimer: This analysis is AI-generated for informational purposes only and is not financial advice. Stock market investments involve risks. Consult a qualified financial advisor before investing. Stox Sight is not liable for decisions based on this information.\n",
+    "conclusion": {
+        "symbol": "TCS",
+        "currentPriceNSE": "3439.9",
+        "overallSentimentScore": "Neutral",
+        "keyInsightsSummary": "TCS shows strong ROE and ROCE, indicating financial efficiency, but faces challenges with slower sales growth and potentially high valuation based on P/E and book value. NSE data aligns with the screener.in data with minor price differences. The outlook remains cautiously neutral pending more detailed fundamental and market data for comprehensive decision-making.",
+        "potentialActionableSignals": [
+            {
+                "indicatorType": "Valuation_HighPB",
+                "signalStrength": "Medium",
+                "description": "Screener.in data shows the stock is trading at 13.1 times its book value. This is considered high and suggests potential overvaluation relative to its assets, possibly limiting immediate upside.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Medium-term (3-12mo)"
+            },
+            {
+                "indicatorType": "Growth_PositiveTrend",
+                "signalStrength": "Medium",
+                "description": "The company has demonstrated a compounded sales growth of 10% over 10 years, and 10% over 5 years based on screener.in data, indicating consistent revenue expansion despite recent slowdown.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Long-term (1yr+)"
+            },
+            {
+                "indicatorType": "Dividend_Attractive",
+                "signalStrength": "Medium",
+                "description": "Screener.in reports a dividend yield of 1.60% and a healthy dividend payout of 83.3%, suggesting TCS returns significant value to shareholders, making it attractive for income-focused investors.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Long-term (1yr+)"
+            },
+            {
+                "indicatorType": "PriceMomentum_ShortTermNegative",
+                "signalStrength": "Low",
+                "description": "NSE data indicates a slight price decrease of -0.26% today. Coupled with a stock price CAGR of 0% over 3 years (Screener data) and -12% over 1 year, there is short-term negative momentum though the signal strength is low due to overall strong fundamentals.",
+                "dataSources": [
+                    "NSE India",
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Short-term (0-3mo)"
+            }
+        ],
+        "entryPointConsiderations": {
+            "currentValuationAssessment": "Appears potentially overvalued based on Screener's P/B of 13.1, though P/E of 25.6 might be justified given historical ROE. NSE current price is 3439.9.",
+            "speculativeGoodPriceRangeLower": "Speculatively, if P/B were to normalize closer to 8, a price around 2100 might be more attractive. This is highly speculative.",
+            "speculativeGoodPriceRangeUpper": "Given growth of 10% (Screener) and an assumption of consistent performance, a forward P/E suggests some limited upside from the current NSE price 3439.9. A price range capped at 3800 is speculative.",
+            "technicalLevelsToWatchNSE": {
+                "recentDayLow": "3399",
+                "recentDayHigh": "N/A",
+                "52WeekLow": "N/A",
+                "52WeekHigh": "N/A"
+            },
+            "rationale": "Given the current valuation assessment, a potential entry might be considered if the price dips closer to 3400. The speculative good price range lower is significantly lower than the 52 week range mentioned which makes the stock seem quite expensive. Detailed technical entry points cannot be fully determined due to limited NSE market data provided (e.g., missing SMAs or detailed historical price patterns)."
+        },
+        "seasonalPatternsObserved": {
+            "typicallyStrongQuarters": [],
+            "typicallyWeakQuarters": [],
+            "monthlyTrendNotes": "Insufficient historical data from NSE to identify any meaningful monthly or quarterly seasonal patterns for TCS."
+        },
+        "corporateActionsNSE": [],
+        "riskFactorsForTimingAndInvestment": [
+            "Screener.in reports poor sales growth of 10.2% over the past five years, indicating a slowdown in revenue expansion.",
+            "Screener.in data shows the stock is trading at 13.1 times its book value, suggesting potential for correction if market sentiment shifts.",
+            "Limited recent price history from NSE makes short-term trend analysis difficult."
+        ],
+        "analystConsensusNSE": {
+            "recommendation": "N/A",
+            "numberOfAnalysts": "N/A",
+            "targetPriceMean": "N/A"
+        },
+        "dataConfidenceLevel": "Medium",
+        "finalWordOfCaution": "This AI synthesizes provided data to offer speculative insights. It does not possess real-time market awareness or professional financial advisory capabilities. All outputs are interpretations and estimations.",
+        "disclaimer": "IMPORTANT: This is an AI-generated speculative outlook based on limited historical data and analysis. It is NOT financial advice. Prices and market conditions can change rapidly. Consult a qualified financial advisor. Stox Sight is not liable for any decisions."
+    }
+}      
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "message": "Processing complete.",
+    "run_id": "24884ff0-14bf-4dae-9936-f91592108c40",
+    "lstm_results": {
+        "training_loss": [
+            0.10278306156396866,
+            0.01894661970436573,
+            0.01479802280664444
+        ],
+        "test_metrics": {
+            "mae": 170.844688988441,
+            "r2_score": 0.5830881338292214
+        },
+        "future_predictions": {
+            "2025-05-14": 3360.1953125,
+            "2025-05-15": 3361.35595703125,
+            "2025-05-16": 3362.969482421875,
+            "2025-05-17": 3364.72802734375,
+            "2025-05-18": 3366.377685546875,
+            "2025-05-19": 3367.72900390625,
+            "2025-05-20": 3368.65869140625,
+            "2025-05-21": 3369.099365234375,
+            "2025-05-22": 3369.03173828125,
+            "2025-05-23": 3368.470947265625,
+            "2025-05-24": 3367.45556640625,
+            "2025-05-25": 3366.039794921875,
+            "2025-05-26": 3364.283203125,
+            "2025-05-27": 3362.248291015625,
+            "2025-05-28": 3359.99267578125,
+            "2025-05-29": 3357.5703125,
+            "2025-05-30": 3355.02685546875,
+            "2025-05-31": 3352.402099609375,
+            "2025-06-01": 3349.72705078125,
+            "2025-06-02": 3347.0263671875,
+            "2025-06-03": 3344.3193359375,
+            "2025-06-04": 3341.619873046875,
+            "2025-06-05": 3338.936279296875,
+            "2025-06-06": 3336.275390625,
+            "2025-06-07": 3333.640625,
+            "2025-06-08": 3331.0341796875,
+            "2025-06-09": 3328.455810546875,
+            "2025-06-10": 3325.904052734375,
+            "2025-06-11": 3323.378662109375,
+            "2025-06-12": 3320.8779296875
+        }
+    },
+    "polynomial_results": {
+        "test_metrics": {
+            "mae": 1588.1323830166075,
+            "r2_score": -26.63063668629942
+        },
+        "future_predictions": {
+            "2025-05-14": 6058.331521041635,
+            "2025-05-15": 6066.417025751199,
+            "2025-05-16": 6074.518455343575,
+            "2025-05-17": 6082.635825211433,
+            "2025-05-18": 6090.76915074743,
+            "2025-05-19": 6098.918447344236,
+            "2025-05-20": 6107.0837303945045,
+            "2025-05-21": 6115.26501529089,
+            "2025-05-22": 6123.4623174260605,
+            "2025-05-23": 6131.675652192679,
+            "2025-05-24": 6139.905034983398,
+            "2025-05-25": 6148.150481190891,
+            "2025-05-26": 6156.412006207801,
+            "2025-05-27": 6164.689625426806,
+            "2025-05-28": 6172.98335424055,
+            "2025-05-29": 6181.29320804171,
+            "2025-05-30": 6189.619202222932,
+            "2025-05-31": 6197.961352176885,
+            "2025-06-01": 6206.31967329623,
+            "2025-06-02": 6214.694180973628,
+            "2025-06-03": 6223.0848906017345,
+            "2025-06-04": 6231.491817573216,
+            "2025-06-05": 6239.914977280722,
+            "2025-06-06": 6248.354385116924,
+            "2025-06-07": 6256.810056474482,
+            "2025-06-08": 6265.282006746058,
+            "2025-06-09": 6273.770251324296,
+            "2025-06-10": 6282.274805601882,
+            "2025-06-11": 6290.7956849714565,
+            "2025-06-12": 6299.332904825692
+        }
+    },
+    "trading_suggestion_tomorrow": {
+        "signal": "SELL",
+        "predicted_price_lstm": 3360.1953125,
+        "last_actual_price": 3515.0,
+        "percentage_change": -4.4041162873399715,
+        "reason": "Predicted LSTM price for tomorrow: 3360.20. Last close: 3515.00 on 2025-05-13. Change: -4.40% (<-0.5%)"
+    },
+    "plot_urls": {
+        "lstm_test_plot": "/static/plots/24884ff0-14bf-4dae-9936-f91592108c40_lstm_test_predictions.png",
+        "lstm_future_plot": "/static/plots/24884ff0-14bf-4dae-9936-f91592108c40_lstm_future_predictions.png",
+        "polynomial_plot": "/static/plots/24884ff0-14bf-4dae-9936-f91592108c40_polynomial_regression.png"
+    },
+    "pdf_report_url": "/reports/24884ff0-14bf-4dae-9936-f91592108c40_report.pdf"
+}%   
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "success": true,
+    "result": "## Stox Sight: Tata Consultancy Services (TCS) Stock Analysis\n\n**1. Executive Summary:**\n\nThe future outlook for Tata Consultancy Services (TCS) is mixed. While the company boasts strong profitability metrics like a high ROE (52.4%) and ROCE (64.6%),  its sales growth has been weak (10.2% over five years), and the stock trades at a high price-to-book ratio (13.6x).  A definitive buy, sell, or hold recommendation cannot be made based solely on the provided data.\n\n**2. Company Overview:**\n\nTata Consultancy Services Ltd. is an IT - Software company operating in the Computers - Software - Large industry.  (Source: Screener.in)\n\n**3. Detailed Analysis:**\n\n* **Financial Health:** TCS shows a high Return on Equity (ROE) of 52.4% and a Return on Capital Employed (ROCE) of 64.6%, indicating strong profitability. However, the five-year sales growth is a concerning 10.2%. The company's book value is ₹262 (Source: Screener.in), and the given data does not provide details on revenue, profit, debt, or cash flow figures beyond what's summarized in the quarterly and annual results tables.\n\n\n* **Valuation:** The Price-to-Earnings (P/E) ratio is 26.5 (Source: Screener.in).  The price-to-book (P/B) ratio is 13.6 (Source: Screener.in), indicating the stock is trading at 13.6 times its book value.  Peer comparisons are unavailable from the provided data to assess relative valuation.  Based on the high P/B ratio and modest sales growth, the stock may be considered overvalued, although this needs further peer comparison analysis for confirmation.\n\n\n* **Pros & Cons:**\n\n    * **Pros:** High ROE (3-year average 50.3%), High dividend payout (83.3%). (Source: Screener.in)\n    * **Cons:** High book value (13.6 times book value), Poor sales growth (10.2% over five years). (Source: Screener.in)\n\n\n* **Other Key Information:** The dividend yield is 1.55%. (Source: Screener.in).  Detailed quarterly and annual financial information is provided, though lacks crucial summary figures requested in the prompt.\n\n\n**4. Recommendation & Justification:**\n\nDue to the limited scope of the provided data, a clear buy, sell, or hold recommendation cannot be made. Further analysis, including complete financial statements and peer comparisons, is required before a confident investment decision can be made.  Further Monitoring Advised.\n\n\n**5. Potential Risks & Considerations:**\n\nThe main risks associated with investing in TCS are the slow sales growth and the high valuation based on the price-to-book ratio. The analysis is limited by the availability of historical data and does not predict future performance.\n\n**6. Important Disclaimer:**\n\nDisclaimer: This analysis is AI-generated for informational purposes only and is not financial advice. Stock market investments involve risks. Consult a qualified financial advisor before investing. Stox Sight is not liable for decisions based on this information.\n",
+    "conclusion": {
+        "symbol": "TCS",
+        "currentPriceNSE": "3547",
+        "overallSentimentScore": "Neutral",
+        "keyInsightsSummary": "TCS presents a mixed outlook. Its robust profitability, reflected in high ROE and ROCE, is counterbalanced by slower sales growth and a high P/B ratio, suggesting potential overvaluation. While the company maintains a strong dividend payout, the limited data and mixed signals warrant a cautious approach, precluding a definitive investment recommendation at this juncture.",
+        "potentialActionableSignals": [
+            {
+                "indicatorType": "Valuation_HighPB",
+                "signalStrength": "Medium",
+                "description": "Screener.in data shows a Price-to-Book ratio of 13.6. This is considered high relative to typical industry standards (not provided). It suggests the stock might be overvalued, and investors are paying a premium for its assets.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Medium-term (3-12mo)"
+            },
+            {
+                "indicatorType": "Growth_PositiveTrend",
+                "signalStrength": "Low",
+                "description": "While historical compounded sales growth figures (10% for 5 and 10 years from Screener) are positive, recent sales growth has been poor (TTM 6% from Screener). This slowing growth may not justify the current valuation.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Long-term (1yr+)"
+            },
+            {
+                "indicatorType": "Dividend_Attractive",
+                "signalStrength": "Medium",
+                "description": "TCS has been maintaining a healthy dividend payout of 83.3% (from Screener) and a dividend yield of 1.55%. This could attract income-seeking investors, but the sustainability of this payout needs monitoring given sales growth concerns.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Medium-term (3-12mo)"
+            }
+        ],
+        "entryPointConsiderations": {
+            "currentValuationAssessment": "Appears overvalued based on Screener's P/B (13.6), though P/E (26.5) might be justified by historical growth metrics. NSE current price is 3547.",
+            "speculativeGoodPriceRangeLower": "Speculatively, if P/B were to normalize to an estimated industry average of 5 (assuming a generic industry average not provided), a price around 1310 might be more attractive. This is highly speculative.",
+            "speculativeGoodPriceRangeUpper": "Given historical growth of 10% (Screener), a forward P/E implies a price around 3890, suggesting some upside from current NSE price 3547. Highly speculative.",
+            "technicalLevelsToWatchNSE": {
+                "recentDayLow": "N/A",
+                "recentDayHigh": "N/A",
+                "52WeekLow": "N/A",
+                "52WeekHigh": "N/A"
+            },
+            "rationale": "Given the current valuation assessment, a potential entry might be considered if the price dips closer to recent levels. However, detailed technical entry points cannot be determined due to limited NSE market data provided (e.g., missing SMAs or detailed historical price patterns). Furthermore NSE data does not provide 52 week high or low."
+        },
+        "seasonalPatternsObserved": {
+            "typicallyStrongQuarters": [],
+            "typicallyWeakQuarters": [],
+            "monthlyTrendNotes": "No clear persistent monthly pattern observed from the limited NSE data."
+        },
+        "corporateActionsNSE": [],
+        "riskFactorsForTimingAndInvestment": [
+            "Screener.in reports poor sales growth of 10.2% over the past five years, which may impact future earnings.",
+            "NSE data shows the stock is trading close to the provided open price of 3521, suggesting lack of clear momentum and potential near term resistance."
+        ],
+        "analystConsensusNSE": {
+            "recommendation": "N/A",
+            "numberOfAnalysts": "N/A",
+            "targetPriceMean": "N/A"
+        },
+        "dataConfidenceLevel": "Medium",
+        "finalWordOfCaution": "This AI synthesizes provided data to offer speculative insights. It does not possess real-time market awareness or professional financial advisory capabilities. All outputs are interpretations and estimations.",
+        "disclaimer": "IMPORTANT: This is an AI-generated speculative outlook based on limited historical data and analysis. It is NOT financial advice. Prices and market conditions can change rapidly. Consult a qualified financial advisor. Stox Sight is not liable for any decisions."
+    }
+}%  
