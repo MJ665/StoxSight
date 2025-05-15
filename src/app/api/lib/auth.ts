@@ -1,5 +1,9 @@
 // src/app/api/lib/auth.ts
 // lib/auth.ts
+import type { JWT } from "next-auth/jwt";
+import type { User } from "next-auth";
+
+import type { Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
@@ -16,7 +20,7 @@ import { z } from "zod";
 
 
 
-import {PrismaClient} from "@/db"
+import { PrismaClient } from "@/db"
 const prisma = new PrismaClient()
 
 
@@ -43,44 +47,51 @@ export const NEXT_AUTH = {
           console.error("Invalid email or password format");
           return null;
         }
-      
+
         const { username, password } = parsed.data;
-      
+
         const user = await prisma.user.findUnique({
           where: { email: username }
         });
-      
+
         if (!user) {
           console.error("User not found");
           return null;
         }
-      
+
         if (user.authMethod === "GOOGLE") {
           console.error("Login method is Google");
           return null;
         }
-      
+
         const isPasswordValid = await compare(password, user.password as string);
-      
+
         if (!isPasswordValid) {
           console.error("Invalid password");
           return null;
         }
-      
-        return user;
+
+        return { ...user, id: String(user.id) };
       }
-      
+
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, account, profile }) {
-      // Only run this logic for Google sign-in
+    async signIn(params: {
+      user: any;
+      account: any;
+      profile?: any;
+      email?: { verificationRequest?: boolean };
+      credentials?: Record<string, unknown>;
+    }) {
+      const { user, account, profile } = params;
+
       if (account?.provider === "google") {
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email! }
         });
-  
+
         if (!existingUser) {
           await prisma.user.create({
             data: {
@@ -91,24 +102,66 @@ export const NEXT_AUTH = {
           });
         }
       }
+
       return true;
     },
-  
-    async jwt({ token, user }) {
+
+    // async signIn({ user, account, profile }) {
+    //   // Only run this logic for Google sign-in
+    //   if (account?.provider === "google") {
+    //     const existingUser = await prisma.user.findUnique({
+    //       where: { email: user.email! }
+    //     });
+
+    //     if (!existingUser) {
+    //       await prisma.user.create({
+    //         data: {
+    //           name: user.name || "Unknown",
+    //           email: user.email!,
+    //           authMethod: "GOOGLE",
+    //         },
+    //       });
+    //     }
+    //   }
+    //   return true;
+    // },
+
+
+    async jwt({
+      token,
+      user,
+    }: {
+      token: JWT;
+      user?: User;
+    }) {
       if (user) {
         token.userId = user.id;
         token.email = user.email;
       }
       return token;
     },
-  
-    async session({ session, token }) {
-      session.user.id = token.userId || token.sub;
+
+
+  // ... inside your NEXT_AUTH callbacks ...
+    async session({ session, token }:{       // Define the shape of the parameters object
+      session: Session;
+      token: JWT;
+    }) {
+      session.user = {
+        // Spread existing user properties (like name, email, image if they exist)
+        ...(session.user || {}), // Use {} if session.user is null/undefined
+        // Add/overwrite id, ensuring it's a string
+        // id : (token.userId || token.sub) 
+      };
       return session;
     }
   },
   
+// ...
+  
+
+     
   pages: {
     signIn: "/signin"
   }
-};
+}

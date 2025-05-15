@@ -2,18 +2,19 @@
   "name": "stox-sight",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev ",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+"scripts": {
+  "dev": "next dev ",
+  "build": "next build", 
+  "start": "next start",
+  "lint": "next lint"
+},
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@google/genai": "^0.13.0",
     "@google/generative-ai": "^0.24.1",
+    "@prisma/client": "^6.8.0",
     "@prisma/extension-accelerate": "^1.3.0",
     "axios": "^1.9.0",
     "bcryptjs": "^3.0.2",
@@ -36,7 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "postcss": "^8.5.3",
-    "prisma": "^6.7.0",
+    "prisma": "^6.8.0",
     "tailwindcss": "^4.1.5",
     "tsx": "^4.19.4",
     "typescript": "^5"

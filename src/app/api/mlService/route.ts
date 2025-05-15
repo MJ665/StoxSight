@@ -1,6 +1,8 @@
 // src/app/api/mlService/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { NseIndia, DateRange, EquityHistoricalData as NseEquityHistoricalRecord } from 'stock-nse-india';
+import { NseIndia, 
+    // DateRange, EquityHistoricalData as NseEquityHistoricalRecord 
+} from 'stock-nse-india';
 import fs from 'fs/promises'; // Use fs.promises
 import path from 'path';
 
@@ -107,7 +109,7 @@ export async function POST(req: NextRequest) {
 
         console.log(`[mlService] Received request: Symbol=${stockSymbol}, Market=${market}, Email=${email}, Start=${startDate}, End=${endDate}`);
 
-        const range: DateRange = {
+        const range = {
             start: new Date(startDate),
             end: new Date(endDate),
         };

@@ -1,12 +1,13 @@
 
 
 const API_KEYS = {
-  IDEA: process.env.GOOGLE_API_ONE_IDEA_GENERATOR,
-  RESPONSE: process.env.GOOGLE_API_TWO_RESPONCE_GENERATOR,
-  CONCLUDE: process.env.GOOGLE_API_THREE_CROSS_VALIDATION_BETTER_RESPONCE,
+  IDEA: process.env.GOOGLE_API_ONE_IDEA_GENERATOR as string,
+  RESPONSE: process.env.GOOGLE_API_TWO_RESPONCE_GENERATOR as string,
+  CONCLUDE: process.env.GOOGLE_API_THREE_CROSS_VALIDATION_BETTER_RESPONCE as string,
 };
 
-import { getNseIndiaMarketData } from "./nseIndiaService"; // Import the new service
+// import { getNseIndiaMarketData } from "./nseIndiaService"; // Import the new service
+// function getNseIndiaMarketData(symbol) {return null}
 
 import { spawn } from "child_process"; // For running Python script
 import path from "path"; // For constructing path to script
@@ -25,7 +26,9 @@ const prisma  = new PrismaClient()
 // src/app/api/llmStockInfo/route.ts
 
 // ... (imports and other code) ...
-import { GoogleGenerativeAI,getGenerativeModel , GenerationConfig, HarmCategory, HarmBlockThreshold } from "@google/generative-ai"; // Corrected import based on your package.json
+import { GoogleGenerativeAI,
+  // getGenerativeModel ,
+   GenerationConfig, HarmCategory, HarmBlockThreshold } from "@google/generative-ai"; // Corrected import based on your package.json
 
 // ...
 
@@ -265,7 +268,7 @@ export async function POST(req: NextRequest) { // Removed res: NextResponse as i
         let nseDataObject: any = null; // Use 'any' or the NseMarketDataSummary interface
         try {
           console.log(`Fetching NSE India data for symbol: ${symbol}`);
-          nseDataObject = await getNseIndiaMarketData(symbol); 
+          // nseDataObject = await getNseIndiaMarketData(symbol); 
 
           if (nseDataObject) {
             const fetchStatus = nseDataObject.status || "Unknown";
