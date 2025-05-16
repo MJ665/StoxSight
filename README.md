@@ -1,8 +1,3 @@
-Okay, creating a good README is crucial for any project, especially for a hackathon submission or an open-source project. It should clearly explain what the project is, how to set it up, how to use it, and acknowledge its current state/limitations.
-
-Since you have two repositories (the main Next.js app and the FastAPI ML service), you'll ideally have a README in each. The main repo's README will be more comprehensive and link to the ML service.
-
-Let's draft a README for your main StoxSight Next.js application repository (https://github.com/MJ665/StoxSight).
 
 StoxSight 📈🧠🔗
 
