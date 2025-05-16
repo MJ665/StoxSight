@@ -127,34 +127,33 @@ export const NEXT_AUTH = {
     // },
 
 
-    async jwt({
-      token,
-      user,
-    }: {
-      token: JWT;
-      user?: User;
-    }) {
+    async jwt({ token, user }: { token: JWT; user?: User /* NextAuth.js User type */ }) {
       if (user) {
-        token.userId = user.id;
-        token.email = user.email;
+        // 'user' object comes from 'authorize' (if credentials) or OAuth profile.
+        // 'user.id' should be a string here because 'authorize' returns it as string,
+        // and OAuth providers usually give string IDs.
+        token.userId = user.id; // This is now typed correctly if you extended JWT
+        // You could also directly put everything from your Prisma user onto the token here
+        // if needed, but be mindful of token size.
+        // token.someOtherPrismaField = (user as any).someOtherPrismaField;
       }
       return token;
     },
 
-
-  // ... inside your NEXT_AUTH callbacks ...
-    async session({ session, token }:{       // Define the shape of the parameters object
-      session: Session;
-      token: JWT;
-    }) {
-      session.user = {
-        // Spread existing user properties (like name, email, image if they exist)
-        ...(session.user || {}), // Use {} if session.user is null/undefined
-        // Add/overwrite id, ensuring it's a string
-        // id : (token.userId || token.sub) 
-      };
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (token.userId && session.user) {
+        session.user.id = token.userId; // Now assign it directly, TypeScript knows 'id' exists
+      }
+      if (token.email && session.user) { // Ensure email is also passed if not default
+          session.user.email = token.email;
+      }
+      // Add any other custom properties from token to session.user
+      // if (token.customRole && session.user) {
+      //   session.user.role = token.customRole;
+      // }
       return session;
     }
+// ...
   },
   
 // ...

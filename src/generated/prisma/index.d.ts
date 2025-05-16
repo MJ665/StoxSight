@@ -53,6 +53,16 @@ export type Portfolio = $Result.DefaultSelection<Prisma.$PortfolioPayload>
  * 
  */
 export type Watchlist = $Result.DefaultSelection<Prisma.$WatchlistPayload>
+/**
+ * Model PredictionRun
+ * 
+ */
+export type PredictionRun = $Result.DefaultSelection<Prisma.$PredictionRunPayload>
+/**
+ * Model LlmAnalysisRun
+ * 
+ */
+export type LlmAnalysisRun = $Result.DefaultSelection<Prisma.$LlmAnalysisRunPayload>
 
 /**
  * Enums
@@ -83,6 +93,28 @@ export const WatchlistType: {
 
 export type WatchlistType = (typeof WatchlistType)[keyof typeof WatchlistType]
 
+
+export const RunStatus: {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  PARTIAL: 'PARTIAL'
+};
+
+export type RunStatus = (typeof RunStatus)[keyof typeof RunStatus]
+
+
+export const LlmRunStatus: {
+  PENDING: 'PENDING',
+  FETCHING_DATA: 'FETCHING_DATA',
+  PROCESSING_LLM: 'PROCESSING_LLM',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+};
+
+export type LlmRunStatus = (typeof LlmRunStatus)[keyof typeof LlmRunStatus]
+
 }
 
 export type AuthMethod = $Enums.AuthMethod
@@ -96,6 +128,14 @@ export const PortfolioType: typeof $Enums.PortfolioType
 export type WatchlistType = $Enums.WatchlistType
 
 export const WatchlistType: typeof $Enums.WatchlistType
+
+export type RunStatus = $Enums.RunStatus
+
+export const RunStatus: typeof $Enums.RunStatus
+
+export type LlmRunStatus = $Enums.LlmRunStatus
+
+export const LlmRunStatus: typeof $Enums.LlmRunStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -301,6 +341,26 @@ export class PrismaClient<
     * ```
     */
   get watchlist(): Prisma.WatchlistDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.predictionRun`: Exposes CRUD operations for the **PredictionRun** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PredictionRuns
+    * const predictionRuns = await prisma.predictionRun.findMany()
+    * ```
+    */
+  get predictionRun(): Prisma.PredictionRunDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.llmAnalysisRun`: Exposes CRUD operations for the **LlmAnalysisRun** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LlmAnalysisRuns
+    * const llmAnalysisRuns = await prisma.llmAnalysisRun.findMany()
+    * ```
+    */
+  get llmAnalysisRun(): Prisma.LlmAnalysisRunDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -748,7 +808,9 @@ export namespace Prisma {
     USStock: 'USStock',
     CryptoAsset: 'CryptoAsset',
     Portfolio: 'Portfolio',
-    Watchlist: 'Watchlist'
+    Watchlist: 'Watchlist',
+    PredictionRun: 'PredictionRun',
+    LlmAnalysisRun: 'LlmAnalysisRun'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -767,7 +829,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "zerodhaAccount" | "upstoxAccount" | "indiaStock" | "uSStock" | "cryptoAsset" | "portfolio" | "watchlist"
+      modelProps: "user" | "zerodhaAccount" | "upstoxAccount" | "indiaStock" | "uSStock" | "cryptoAsset" | "portfolio" | "watchlist" | "predictionRun" | "llmAnalysisRun"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1363,6 +1425,154 @@ export namespace Prisma {
           }
         }
       }
+      PredictionRun: {
+        payload: Prisma.$PredictionRunPayload<ExtArgs>
+        fields: Prisma.PredictionRunFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PredictionRunFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PredictionRunFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          findFirst: {
+            args: Prisma.PredictionRunFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PredictionRunFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          findMany: {
+            args: Prisma.PredictionRunFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>[]
+          }
+          create: {
+            args: Prisma.PredictionRunCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          createMany: {
+            args: Prisma.PredictionRunCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PredictionRunCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>[]
+          }
+          delete: {
+            args: Prisma.PredictionRunDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          update: {
+            args: Prisma.PredictionRunUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          deleteMany: {
+            args: Prisma.PredictionRunDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PredictionRunUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PredictionRunUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>[]
+          }
+          upsert: {
+            args: Prisma.PredictionRunUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PredictionRunPayload>
+          }
+          aggregate: {
+            args: Prisma.PredictionRunAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePredictionRun>
+          }
+          groupBy: {
+            args: Prisma.PredictionRunGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PredictionRunGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PredictionRunCountArgs<ExtArgs>
+            result: $Utils.Optional<PredictionRunCountAggregateOutputType> | number
+          }
+        }
+      }
+      LlmAnalysisRun: {
+        payload: Prisma.$LlmAnalysisRunPayload<ExtArgs>
+        fields: Prisma.LlmAnalysisRunFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LlmAnalysisRunFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LlmAnalysisRunFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          findFirst: {
+            args: Prisma.LlmAnalysisRunFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LlmAnalysisRunFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          findMany: {
+            args: Prisma.LlmAnalysisRunFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>[]
+          }
+          create: {
+            args: Prisma.LlmAnalysisRunCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          createMany: {
+            args: Prisma.LlmAnalysisRunCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LlmAnalysisRunCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>[]
+          }
+          delete: {
+            args: Prisma.LlmAnalysisRunDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          update: {
+            args: Prisma.LlmAnalysisRunUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          deleteMany: {
+            args: Prisma.LlmAnalysisRunDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LlmAnalysisRunUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LlmAnalysisRunUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>[]
+          }
+          upsert: {
+            args: Prisma.LlmAnalysisRunUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LlmAnalysisRunPayload>
+          }
+          aggregate: {
+            args: Prisma.LlmAnalysisRunAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLlmAnalysisRun>
+          }
+          groupBy: {
+            args: Prisma.LlmAnalysisRunGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LlmAnalysisRunGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LlmAnalysisRunCountArgs<ExtArgs>
+            result: $Utils.Optional<LlmAnalysisRunCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1455,6 +1665,8 @@ export namespace Prisma {
     cryptoAsset?: CryptoAssetOmit
     portfolio?: PortfolioOmit
     watchlist?: WatchlistOmit
+    predictionRun?: PredictionRunOmit
+    llmAnalysisRun?: LlmAnalysisRunOmit
   }
 
   /* Types for Logging */
@@ -1551,11 +1763,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     portfolios: number
     watchlists: number
+    predictionRuns: number
+    llmAnalysisRuns: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     portfolios?: boolean | UserCountOutputTypeCountPortfoliosArgs
     watchlists?: boolean | UserCountOutputTypeCountWatchlistsArgs
+    predictionRuns?: boolean | UserCountOutputTypeCountPredictionRunsArgs
+    llmAnalysisRuns?: boolean | UserCountOutputTypeCountLlmAnalysisRunsArgs
   }
 
   // Custom InputTypes
@@ -1581,6 +1797,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountWatchlistsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WatchlistWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPredictionRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PredictionRunWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLlmAnalysisRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LlmAnalysisRunWhereInput
   }
 
 
@@ -1806,6 +2036,8 @@ export namespace Prisma {
     watchlists?: boolean | User$watchlistsArgs<ExtArgs>
     zerodhaAccount?: boolean | User$zerodhaAccountArgs<ExtArgs>
     upstoxAccount?: boolean | User$upstoxAccountArgs<ExtArgs>
+    predictionRuns?: boolean | User$predictionRunsArgs<ExtArgs>
+    llmAnalysisRuns?: boolean | User$llmAnalysisRunsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1845,6 +2077,8 @@ export namespace Prisma {
     watchlists?: boolean | User$watchlistsArgs<ExtArgs>
     zerodhaAccount?: boolean | User$zerodhaAccountArgs<ExtArgs>
     upstoxAccount?: boolean | User$upstoxAccountArgs<ExtArgs>
+    predictionRuns?: boolean | User$predictionRunsArgs<ExtArgs>
+    llmAnalysisRuns?: boolean | User$llmAnalysisRunsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1857,6 +2091,8 @@ export namespace Prisma {
       watchlists: Prisma.$WatchlistPayload<ExtArgs>[]
       zerodhaAccount: Prisma.$ZerodhaAccountPayload<ExtArgs> | null
       upstoxAccount: Prisma.$UpstoxAccountPayload<ExtArgs> | null
+      predictionRuns: Prisma.$PredictionRunPayload<ExtArgs>[]
+      llmAnalysisRuns: Prisma.$LlmAnalysisRunPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2264,6 +2500,8 @@ export namespace Prisma {
     watchlists<T extends User$watchlistsArgs<ExtArgs> = {}>(args?: Subset<T, User$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     zerodhaAccount<T extends User$zerodhaAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$zerodhaAccountArgs<ExtArgs>>): Prisma__ZerodhaAccountClient<$Result.GetResult<Prisma.$ZerodhaAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     upstoxAccount<T extends User$upstoxAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$upstoxAccountArgs<ExtArgs>>): Prisma__UpstoxAccountClient<$Result.GetResult<Prisma.$UpstoxAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    predictionRuns<T extends User$predictionRunsArgs<ExtArgs> = {}>(args?: Subset<T, User$predictionRunsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    llmAnalysisRuns<T extends User$llmAnalysisRunsArgs<ExtArgs> = {}>(args?: Subset<T, User$llmAnalysisRunsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2771,6 +3009,54 @@ export namespace Prisma {
      */
     include?: UpstoxAccountInclude<ExtArgs> | null
     where?: UpstoxAccountWhereInput
+  }
+
+  /**
+   * User.predictionRuns
+   */
+  export type User$predictionRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    where?: PredictionRunWhereInput
+    orderBy?: PredictionRunOrderByWithRelationInput | PredictionRunOrderByWithRelationInput[]
+    cursor?: PredictionRunWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PredictionRunScalarFieldEnum | PredictionRunScalarFieldEnum[]
+  }
+
+  /**
+   * User.llmAnalysisRuns
+   */
+  export type User$llmAnalysisRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    where?: LlmAnalysisRunWhereInput
+    orderBy?: LlmAnalysisRunOrderByWithRelationInput | LlmAnalysisRunOrderByWithRelationInput[]
+    cursor?: LlmAnalysisRunWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LlmAnalysisRunScalarFieldEnum | LlmAnalysisRunScalarFieldEnum[]
   }
 
   /**
@@ -10434,6 +10720,2539 @@ export namespace Prisma {
 
 
   /**
+   * Model PredictionRun
+   */
+
+  export type AggregatePredictionRun = {
+    _count: PredictionRunCountAggregateOutputType | null
+    _avg: PredictionRunAvgAggregateOutputType | null
+    _sum: PredictionRunSumAggregateOutputType | null
+    _min: PredictionRunMinAggregateOutputType | null
+    _max: PredictionRunMaxAggregateOutputType | null
+  }
+
+  export type PredictionRunAvgAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type PredictionRunSumAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type PredictionRunMinAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    stockSymbol: string | null
+    market: string | null
+    runIdFromML: string | null
+    status: $Enums.RunStatus | null
+    requestedAt: Date | null
+    completedAt: Date | null
+    pdfReportUrl: string | null
+    emailSentStatus: string | null
+    mlServiceMessage: string | null
+    errorMessage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PredictionRunMaxAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    stockSymbol: string | null
+    market: string | null
+    runIdFromML: string | null
+    status: $Enums.RunStatus | null
+    requestedAt: Date | null
+    completedAt: Date | null
+    pdfReportUrl: string | null
+    emailSentStatus: string | null
+    mlServiceMessage: string | null
+    errorMessage: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PredictionRunCountAggregateOutputType = {
+    id: number
+    userId: number
+    stockSymbol: number
+    market: number
+    runIdFromML: number
+    status: number
+    requestedAt: number
+    completedAt: number
+    lstmResultsJson: number
+    gruResultsJson: number
+    transformerResultsJson: number
+    polynomialResultsJson: number
+    tradingSuggestionJson: number
+    aiAnalysisJson: number
+    plotUrlsJson: number
+    pdfReportUrl: number
+    emailSentStatus: number
+    mlServiceMessage: number
+    errorMessage: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PredictionRunAvgAggregateInputType = {
+    userId?: true
+  }
+
+  export type PredictionRunSumAggregateInputType = {
+    userId?: true
+  }
+
+  export type PredictionRunMinAggregateInputType = {
+    id?: true
+    userId?: true
+    stockSymbol?: true
+    market?: true
+    runIdFromML?: true
+    status?: true
+    requestedAt?: true
+    completedAt?: true
+    pdfReportUrl?: true
+    emailSentStatus?: true
+    mlServiceMessage?: true
+    errorMessage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PredictionRunMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    stockSymbol?: true
+    market?: true
+    runIdFromML?: true
+    status?: true
+    requestedAt?: true
+    completedAt?: true
+    pdfReportUrl?: true
+    emailSentStatus?: true
+    mlServiceMessage?: true
+    errorMessage?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PredictionRunCountAggregateInputType = {
+    id?: true
+    userId?: true
+    stockSymbol?: true
+    market?: true
+    runIdFromML?: true
+    status?: true
+    requestedAt?: true
+    completedAt?: true
+    lstmResultsJson?: true
+    gruResultsJson?: true
+    transformerResultsJson?: true
+    polynomialResultsJson?: true
+    tradingSuggestionJson?: true
+    aiAnalysisJson?: true
+    plotUrlsJson?: true
+    pdfReportUrl?: true
+    emailSentStatus?: true
+    mlServiceMessage?: true
+    errorMessage?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PredictionRunAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PredictionRun to aggregate.
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PredictionRuns to fetch.
+     */
+    orderBy?: PredictionRunOrderByWithRelationInput | PredictionRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PredictionRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PredictionRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PredictionRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PredictionRuns
+    **/
+    _count?: true | PredictionRunCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PredictionRunAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PredictionRunSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PredictionRunMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PredictionRunMaxAggregateInputType
+  }
+
+  export type GetPredictionRunAggregateType<T extends PredictionRunAggregateArgs> = {
+        [P in keyof T & keyof AggregatePredictionRun]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePredictionRun[P]>
+      : GetScalarType<T[P], AggregatePredictionRun[P]>
+  }
+
+
+
+
+  export type PredictionRunGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PredictionRunWhereInput
+    orderBy?: PredictionRunOrderByWithAggregationInput | PredictionRunOrderByWithAggregationInput[]
+    by: PredictionRunScalarFieldEnum[] | PredictionRunScalarFieldEnum
+    having?: PredictionRunScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PredictionRunCountAggregateInputType | true
+    _avg?: PredictionRunAvgAggregateInputType
+    _sum?: PredictionRunSumAggregateInputType
+    _min?: PredictionRunMinAggregateInputType
+    _max?: PredictionRunMaxAggregateInputType
+  }
+
+  export type PredictionRunGroupByOutputType = {
+    id: string
+    userId: number | null
+    stockSymbol: string
+    market: string
+    runIdFromML: string | null
+    status: $Enums.RunStatus
+    requestedAt: Date
+    completedAt: Date | null
+    lstmResultsJson: JsonValue | null
+    gruResultsJson: JsonValue | null
+    transformerResultsJson: JsonValue | null
+    polynomialResultsJson: JsonValue | null
+    tradingSuggestionJson: JsonValue | null
+    aiAnalysisJson: JsonValue | null
+    plotUrlsJson: JsonValue | null
+    pdfReportUrl: string | null
+    emailSentStatus: string | null
+    mlServiceMessage: string | null
+    errorMessage: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PredictionRunCountAggregateOutputType | null
+    _avg: PredictionRunAvgAggregateOutputType | null
+    _sum: PredictionRunSumAggregateOutputType | null
+    _min: PredictionRunMinAggregateOutputType | null
+    _max: PredictionRunMaxAggregateOutputType | null
+  }
+
+  type GetPredictionRunGroupByPayload<T extends PredictionRunGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PredictionRunGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PredictionRunGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PredictionRunGroupByOutputType[P]>
+            : GetScalarType<T[P], PredictionRunGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PredictionRunSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    runIdFromML?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    completedAt?: boolean
+    lstmResultsJson?: boolean
+    gruResultsJson?: boolean
+    transformerResultsJson?: boolean
+    polynomialResultsJson?: boolean
+    tradingSuggestionJson?: boolean
+    aiAnalysisJson?: boolean
+    plotUrlsJson?: boolean
+    pdfReportUrl?: boolean
+    emailSentStatus?: boolean
+    mlServiceMessage?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["predictionRun"]>
+
+  export type PredictionRunSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    runIdFromML?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    completedAt?: boolean
+    lstmResultsJson?: boolean
+    gruResultsJson?: boolean
+    transformerResultsJson?: boolean
+    polynomialResultsJson?: boolean
+    tradingSuggestionJson?: boolean
+    aiAnalysisJson?: boolean
+    plotUrlsJson?: boolean
+    pdfReportUrl?: boolean
+    emailSentStatus?: boolean
+    mlServiceMessage?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["predictionRun"]>
+
+  export type PredictionRunSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    runIdFromML?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    completedAt?: boolean
+    lstmResultsJson?: boolean
+    gruResultsJson?: boolean
+    transformerResultsJson?: boolean
+    polynomialResultsJson?: boolean
+    tradingSuggestionJson?: boolean
+    aiAnalysisJson?: boolean
+    plotUrlsJson?: boolean
+    pdfReportUrl?: boolean
+    emailSentStatus?: boolean
+    mlServiceMessage?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["predictionRun"]>
+
+  export type PredictionRunSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    runIdFromML?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    completedAt?: boolean
+    lstmResultsJson?: boolean
+    gruResultsJson?: boolean
+    transformerResultsJson?: boolean
+    polynomialResultsJson?: boolean
+    tradingSuggestionJson?: boolean
+    aiAnalysisJson?: boolean
+    plotUrlsJson?: boolean
+    pdfReportUrl?: boolean
+    emailSentStatus?: boolean
+    mlServiceMessage?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PredictionRunOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "stockSymbol" | "market" | "runIdFromML" | "status" | "requestedAt" | "completedAt" | "lstmResultsJson" | "gruResultsJson" | "transformerResultsJson" | "polynomialResultsJson" | "tradingSuggestionJson" | "aiAnalysisJson" | "plotUrlsJson" | "pdfReportUrl" | "emailSentStatus" | "mlServiceMessage" | "errorMessage" | "createdAt" | "updatedAt", ExtArgs["result"]["predictionRun"]>
+  export type PredictionRunInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }
+  export type PredictionRunIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }
+  export type PredictionRunIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | PredictionRun$userArgs<ExtArgs>
+  }
+
+  export type $PredictionRunPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PredictionRun"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: number | null
+      stockSymbol: string
+      market: string
+      runIdFromML: string | null
+      status: $Enums.RunStatus
+      requestedAt: Date
+      completedAt: Date | null
+      lstmResultsJson: Prisma.JsonValue | null
+      gruResultsJson: Prisma.JsonValue | null
+      transformerResultsJson: Prisma.JsonValue | null
+      polynomialResultsJson: Prisma.JsonValue | null
+      tradingSuggestionJson: Prisma.JsonValue | null
+      aiAnalysisJson: Prisma.JsonValue | null
+      plotUrlsJson: Prisma.JsonValue | null
+      pdfReportUrl: string | null
+      emailSentStatus: string | null
+      mlServiceMessage: string | null
+      errorMessage: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["predictionRun"]>
+    composites: {}
+  }
+
+  type PredictionRunGetPayload<S extends boolean | null | undefined | PredictionRunDefaultArgs> = $Result.GetResult<Prisma.$PredictionRunPayload, S>
+
+  type PredictionRunCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PredictionRunFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PredictionRunCountAggregateInputType | true
+    }
+
+  export interface PredictionRunDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PredictionRun'], meta: { name: 'PredictionRun' } }
+    /**
+     * Find zero or one PredictionRun that matches the filter.
+     * @param {PredictionRunFindUniqueArgs} args - Arguments to find a PredictionRun
+     * @example
+     * // Get one PredictionRun
+     * const predictionRun = await prisma.predictionRun.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PredictionRunFindUniqueArgs>(args: SelectSubset<T, PredictionRunFindUniqueArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PredictionRun that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PredictionRunFindUniqueOrThrowArgs} args - Arguments to find a PredictionRun
+     * @example
+     * // Get one PredictionRun
+     * const predictionRun = await prisma.predictionRun.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PredictionRunFindUniqueOrThrowArgs>(args: SelectSubset<T, PredictionRunFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PredictionRun that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunFindFirstArgs} args - Arguments to find a PredictionRun
+     * @example
+     * // Get one PredictionRun
+     * const predictionRun = await prisma.predictionRun.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PredictionRunFindFirstArgs>(args?: SelectSubset<T, PredictionRunFindFirstArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PredictionRun that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunFindFirstOrThrowArgs} args - Arguments to find a PredictionRun
+     * @example
+     * // Get one PredictionRun
+     * const predictionRun = await prisma.predictionRun.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PredictionRunFindFirstOrThrowArgs>(args?: SelectSubset<T, PredictionRunFindFirstOrThrowArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PredictionRuns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PredictionRuns
+     * const predictionRuns = await prisma.predictionRun.findMany()
+     * 
+     * // Get first 10 PredictionRuns
+     * const predictionRuns = await prisma.predictionRun.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const predictionRunWithIdOnly = await prisma.predictionRun.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PredictionRunFindManyArgs>(args?: SelectSubset<T, PredictionRunFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PredictionRun.
+     * @param {PredictionRunCreateArgs} args - Arguments to create a PredictionRun.
+     * @example
+     * // Create one PredictionRun
+     * const PredictionRun = await prisma.predictionRun.create({
+     *   data: {
+     *     // ... data to create a PredictionRun
+     *   }
+     * })
+     * 
+     */
+    create<T extends PredictionRunCreateArgs>(args: SelectSubset<T, PredictionRunCreateArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PredictionRuns.
+     * @param {PredictionRunCreateManyArgs} args - Arguments to create many PredictionRuns.
+     * @example
+     * // Create many PredictionRuns
+     * const predictionRun = await prisma.predictionRun.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PredictionRunCreateManyArgs>(args?: SelectSubset<T, PredictionRunCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PredictionRuns and returns the data saved in the database.
+     * @param {PredictionRunCreateManyAndReturnArgs} args - Arguments to create many PredictionRuns.
+     * @example
+     * // Create many PredictionRuns
+     * const predictionRun = await prisma.predictionRun.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PredictionRuns and only return the `id`
+     * const predictionRunWithIdOnly = await prisma.predictionRun.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PredictionRunCreateManyAndReturnArgs>(args?: SelectSubset<T, PredictionRunCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PredictionRun.
+     * @param {PredictionRunDeleteArgs} args - Arguments to delete one PredictionRun.
+     * @example
+     * // Delete one PredictionRun
+     * const PredictionRun = await prisma.predictionRun.delete({
+     *   where: {
+     *     // ... filter to delete one PredictionRun
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PredictionRunDeleteArgs>(args: SelectSubset<T, PredictionRunDeleteArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PredictionRun.
+     * @param {PredictionRunUpdateArgs} args - Arguments to update one PredictionRun.
+     * @example
+     * // Update one PredictionRun
+     * const predictionRun = await prisma.predictionRun.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PredictionRunUpdateArgs>(args: SelectSubset<T, PredictionRunUpdateArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PredictionRuns.
+     * @param {PredictionRunDeleteManyArgs} args - Arguments to filter PredictionRuns to delete.
+     * @example
+     * // Delete a few PredictionRuns
+     * const { count } = await prisma.predictionRun.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PredictionRunDeleteManyArgs>(args?: SelectSubset<T, PredictionRunDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PredictionRuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PredictionRuns
+     * const predictionRun = await prisma.predictionRun.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PredictionRunUpdateManyArgs>(args: SelectSubset<T, PredictionRunUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PredictionRuns and returns the data updated in the database.
+     * @param {PredictionRunUpdateManyAndReturnArgs} args - Arguments to update many PredictionRuns.
+     * @example
+     * // Update many PredictionRuns
+     * const predictionRun = await prisma.predictionRun.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PredictionRuns and only return the `id`
+     * const predictionRunWithIdOnly = await prisma.predictionRun.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PredictionRunUpdateManyAndReturnArgs>(args: SelectSubset<T, PredictionRunUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PredictionRun.
+     * @param {PredictionRunUpsertArgs} args - Arguments to update or create a PredictionRun.
+     * @example
+     * // Update or create a PredictionRun
+     * const predictionRun = await prisma.predictionRun.upsert({
+     *   create: {
+     *     // ... data to create a PredictionRun
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PredictionRun we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PredictionRunUpsertArgs>(args: SelectSubset<T, PredictionRunUpsertArgs<ExtArgs>>): Prisma__PredictionRunClient<$Result.GetResult<Prisma.$PredictionRunPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PredictionRuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunCountArgs} args - Arguments to filter PredictionRuns to count.
+     * @example
+     * // Count the number of PredictionRuns
+     * const count = await prisma.predictionRun.count({
+     *   where: {
+     *     // ... the filter for the PredictionRuns we want to count
+     *   }
+     * })
+    **/
+    count<T extends PredictionRunCountArgs>(
+      args?: Subset<T, PredictionRunCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PredictionRunCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PredictionRun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PredictionRunAggregateArgs>(args: Subset<T, PredictionRunAggregateArgs>): Prisma.PrismaPromise<GetPredictionRunAggregateType<T>>
+
+    /**
+     * Group by PredictionRun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PredictionRunGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PredictionRunGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PredictionRunGroupByArgs['orderBy'] }
+        : { orderBy?: PredictionRunGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PredictionRunGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPredictionRunGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PredictionRun model
+   */
+  readonly fields: PredictionRunFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PredictionRun.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PredictionRunClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends PredictionRun$userArgs<ExtArgs> = {}>(args?: Subset<T, PredictionRun$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PredictionRun model
+   */
+  interface PredictionRunFieldRefs {
+    readonly id: FieldRef<"PredictionRun", 'String'>
+    readonly userId: FieldRef<"PredictionRun", 'Int'>
+    readonly stockSymbol: FieldRef<"PredictionRun", 'String'>
+    readonly market: FieldRef<"PredictionRun", 'String'>
+    readonly runIdFromML: FieldRef<"PredictionRun", 'String'>
+    readonly status: FieldRef<"PredictionRun", 'RunStatus'>
+    readonly requestedAt: FieldRef<"PredictionRun", 'DateTime'>
+    readonly completedAt: FieldRef<"PredictionRun", 'DateTime'>
+    readonly lstmResultsJson: FieldRef<"PredictionRun", 'Json'>
+    readonly gruResultsJson: FieldRef<"PredictionRun", 'Json'>
+    readonly transformerResultsJson: FieldRef<"PredictionRun", 'Json'>
+    readonly polynomialResultsJson: FieldRef<"PredictionRun", 'Json'>
+    readonly tradingSuggestionJson: FieldRef<"PredictionRun", 'Json'>
+    readonly aiAnalysisJson: FieldRef<"PredictionRun", 'Json'>
+    readonly plotUrlsJson: FieldRef<"PredictionRun", 'Json'>
+    readonly pdfReportUrl: FieldRef<"PredictionRun", 'String'>
+    readonly emailSentStatus: FieldRef<"PredictionRun", 'String'>
+    readonly mlServiceMessage: FieldRef<"PredictionRun", 'String'>
+    readonly errorMessage: FieldRef<"PredictionRun", 'String'>
+    readonly createdAt: FieldRef<"PredictionRun", 'DateTime'>
+    readonly updatedAt: FieldRef<"PredictionRun", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PredictionRun findUnique
+   */
+  export type PredictionRunFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter, which PredictionRun to fetch.
+     */
+    where: PredictionRunWhereUniqueInput
+  }
+
+  /**
+   * PredictionRun findUniqueOrThrow
+   */
+  export type PredictionRunFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter, which PredictionRun to fetch.
+     */
+    where: PredictionRunWhereUniqueInput
+  }
+
+  /**
+   * PredictionRun findFirst
+   */
+  export type PredictionRunFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter, which PredictionRun to fetch.
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PredictionRuns to fetch.
+     */
+    orderBy?: PredictionRunOrderByWithRelationInput | PredictionRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PredictionRuns.
+     */
+    cursor?: PredictionRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PredictionRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PredictionRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PredictionRuns.
+     */
+    distinct?: PredictionRunScalarFieldEnum | PredictionRunScalarFieldEnum[]
+  }
+
+  /**
+   * PredictionRun findFirstOrThrow
+   */
+  export type PredictionRunFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter, which PredictionRun to fetch.
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PredictionRuns to fetch.
+     */
+    orderBy?: PredictionRunOrderByWithRelationInput | PredictionRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PredictionRuns.
+     */
+    cursor?: PredictionRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PredictionRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PredictionRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PredictionRuns.
+     */
+    distinct?: PredictionRunScalarFieldEnum | PredictionRunScalarFieldEnum[]
+  }
+
+  /**
+   * PredictionRun findMany
+   */
+  export type PredictionRunFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter, which PredictionRuns to fetch.
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PredictionRuns to fetch.
+     */
+    orderBy?: PredictionRunOrderByWithRelationInput | PredictionRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PredictionRuns.
+     */
+    cursor?: PredictionRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PredictionRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PredictionRuns.
+     */
+    skip?: number
+    distinct?: PredictionRunScalarFieldEnum | PredictionRunScalarFieldEnum[]
+  }
+
+  /**
+   * PredictionRun create
+   */
+  export type PredictionRunCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PredictionRun.
+     */
+    data: XOR<PredictionRunCreateInput, PredictionRunUncheckedCreateInput>
+  }
+
+  /**
+   * PredictionRun createMany
+   */
+  export type PredictionRunCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PredictionRuns.
+     */
+    data: PredictionRunCreateManyInput | PredictionRunCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PredictionRun createManyAndReturn
+   */
+  export type PredictionRunCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * The data used to create many PredictionRuns.
+     */
+    data: PredictionRunCreateManyInput | PredictionRunCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PredictionRun update
+   */
+  export type PredictionRunUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PredictionRun.
+     */
+    data: XOR<PredictionRunUpdateInput, PredictionRunUncheckedUpdateInput>
+    /**
+     * Choose, which PredictionRun to update.
+     */
+    where: PredictionRunWhereUniqueInput
+  }
+
+  /**
+   * PredictionRun updateMany
+   */
+  export type PredictionRunUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PredictionRuns.
+     */
+    data: XOR<PredictionRunUpdateManyMutationInput, PredictionRunUncheckedUpdateManyInput>
+    /**
+     * Filter which PredictionRuns to update
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * Limit how many PredictionRuns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PredictionRun updateManyAndReturn
+   */
+  export type PredictionRunUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * The data used to update PredictionRuns.
+     */
+    data: XOR<PredictionRunUpdateManyMutationInput, PredictionRunUncheckedUpdateManyInput>
+    /**
+     * Filter which PredictionRuns to update
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * Limit how many PredictionRuns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PredictionRun upsert
+   */
+  export type PredictionRunUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PredictionRun to update in case it exists.
+     */
+    where: PredictionRunWhereUniqueInput
+    /**
+     * In case the PredictionRun found by the `where` argument doesn't exist, create a new PredictionRun with this data.
+     */
+    create: XOR<PredictionRunCreateInput, PredictionRunUncheckedCreateInput>
+    /**
+     * In case the PredictionRun was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PredictionRunUpdateInput, PredictionRunUncheckedUpdateInput>
+  }
+
+  /**
+   * PredictionRun delete
+   */
+  export type PredictionRunDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+    /**
+     * Filter which PredictionRun to delete.
+     */
+    where: PredictionRunWhereUniqueInput
+  }
+
+  /**
+   * PredictionRun deleteMany
+   */
+  export type PredictionRunDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PredictionRuns to delete
+     */
+    where?: PredictionRunWhereInput
+    /**
+     * Limit how many PredictionRuns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PredictionRun.user
+   */
+  export type PredictionRun$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * PredictionRun without action
+   */
+  export type PredictionRunDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PredictionRun
+     */
+    select?: PredictionRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PredictionRun
+     */
+    omit?: PredictionRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PredictionRunInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LlmAnalysisRun
+   */
+
+  export type AggregateLlmAnalysisRun = {
+    _count: LlmAnalysisRunCountAggregateOutputType | null
+    _avg: LlmAnalysisRunAvgAggregateOutputType | null
+    _sum: LlmAnalysisRunSumAggregateOutputType | null
+    _min: LlmAnalysisRunMinAggregateOutputType | null
+    _max: LlmAnalysisRunMaxAggregateOutputType | null
+  }
+
+  export type LlmAnalysisRunAvgAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type LlmAnalysisRunSumAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type LlmAnalysisRunMinAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    userQuery: string | null
+    stockSymbol: string | null
+    market: string | null
+    requestedAt: Date | null
+    status: $Enums.LlmRunStatus | null
+    completedAt: Date | null
+    errorMessage: string | null
+    llmIdeaOutput: string | null
+    llmReportOutput: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LlmAnalysisRunMaxAggregateOutputType = {
+    id: string | null
+    userId: number | null
+    userQuery: string | null
+    stockSymbol: string | null
+    market: string | null
+    requestedAt: Date | null
+    status: $Enums.LlmRunStatus | null
+    completedAt: Date | null
+    errorMessage: string | null
+    llmIdeaOutput: string | null
+    llmReportOutput: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LlmAnalysisRunCountAggregateOutputType = {
+    id: number
+    userId: number
+    userQuery: number
+    stockSymbol: number
+    market: number
+    requestedAt: number
+    status: number
+    completedAt: number
+    errorMessage: number
+    screenerDataSnapshot: number
+    nseMarketDataSnapshot: number
+    llmIdeaOutput: number
+    llmReportOutput: number
+    llmConclusionJson: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LlmAnalysisRunAvgAggregateInputType = {
+    userId?: true
+  }
+
+  export type LlmAnalysisRunSumAggregateInputType = {
+    userId?: true
+  }
+
+  export type LlmAnalysisRunMinAggregateInputType = {
+    id?: true
+    userId?: true
+    userQuery?: true
+    stockSymbol?: true
+    market?: true
+    requestedAt?: true
+    status?: true
+    completedAt?: true
+    errorMessage?: true
+    llmIdeaOutput?: true
+    llmReportOutput?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LlmAnalysisRunMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    userQuery?: true
+    stockSymbol?: true
+    market?: true
+    requestedAt?: true
+    status?: true
+    completedAt?: true
+    errorMessage?: true
+    llmIdeaOutput?: true
+    llmReportOutput?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LlmAnalysisRunCountAggregateInputType = {
+    id?: true
+    userId?: true
+    userQuery?: true
+    stockSymbol?: true
+    market?: true
+    requestedAt?: true
+    status?: true
+    completedAt?: true
+    errorMessage?: true
+    screenerDataSnapshot?: true
+    nseMarketDataSnapshot?: true
+    llmIdeaOutput?: true
+    llmReportOutput?: true
+    llmConclusionJson?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LlmAnalysisRunAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LlmAnalysisRun to aggregate.
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LlmAnalysisRuns to fetch.
+     */
+    orderBy?: LlmAnalysisRunOrderByWithRelationInput | LlmAnalysisRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LlmAnalysisRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LlmAnalysisRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LlmAnalysisRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LlmAnalysisRuns
+    **/
+    _count?: true | LlmAnalysisRunCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LlmAnalysisRunAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LlmAnalysisRunSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LlmAnalysisRunMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LlmAnalysisRunMaxAggregateInputType
+  }
+
+  export type GetLlmAnalysisRunAggregateType<T extends LlmAnalysisRunAggregateArgs> = {
+        [P in keyof T & keyof AggregateLlmAnalysisRun]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLlmAnalysisRun[P]>
+      : GetScalarType<T[P], AggregateLlmAnalysisRun[P]>
+  }
+
+
+
+
+  export type LlmAnalysisRunGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LlmAnalysisRunWhereInput
+    orderBy?: LlmAnalysisRunOrderByWithAggregationInput | LlmAnalysisRunOrderByWithAggregationInput[]
+    by: LlmAnalysisRunScalarFieldEnum[] | LlmAnalysisRunScalarFieldEnum
+    having?: LlmAnalysisRunScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LlmAnalysisRunCountAggregateInputType | true
+    _avg?: LlmAnalysisRunAvgAggregateInputType
+    _sum?: LlmAnalysisRunSumAggregateInputType
+    _min?: LlmAnalysisRunMinAggregateInputType
+    _max?: LlmAnalysisRunMaxAggregateInputType
+  }
+
+  export type LlmAnalysisRunGroupByOutputType = {
+    id: string
+    userId: number | null
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt: Date
+    status: $Enums.LlmRunStatus
+    completedAt: Date | null
+    errorMessage: string | null
+    screenerDataSnapshot: JsonValue | null
+    nseMarketDataSnapshot: JsonValue | null
+    llmIdeaOutput: string | null
+    llmReportOutput: string | null
+    llmConclusionJson: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: LlmAnalysisRunCountAggregateOutputType | null
+    _avg: LlmAnalysisRunAvgAggregateOutputType | null
+    _sum: LlmAnalysisRunSumAggregateOutputType | null
+    _min: LlmAnalysisRunMinAggregateOutputType | null
+    _max: LlmAnalysisRunMaxAggregateOutputType | null
+  }
+
+  type GetLlmAnalysisRunGroupByPayload<T extends LlmAnalysisRunGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LlmAnalysisRunGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LlmAnalysisRunGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LlmAnalysisRunGroupByOutputType[P]>
+            : GetScalarType<T[P], LlmAnalysisRunGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LlmAnalysisRunSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    userQuery?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    requestedAt?: boolean
+    status?: boolean
+    completedAt?: boolean
+    errorMessage?: boolean
+    screenerDataSnapshot?: boolean
+    nseMarketDataSnapshot?: boolean
+    llmIdeaOutput?: boolean
+    llmReportOutput?: boolean
+    llmConclusionJson?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["llmAnalysisRun"]>
+
+  export type LlmAnalysisRunSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    userQuery?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    requestedAt?: boolean
+    status?: boolean
+    completedAt?: boolean
+    errorMessage?: boolean
+    screenerDataSnapshot?: boolean
+    nseMarketDataSnapshot?: boolean
+    llmIdeaOutput?: boolean
+    llmReportOutput?: boolean
+    llmConclusionJson?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["llmAnalysisRun"]>
+
+  export type LlmAnalysisRunSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    userQuery?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    requestedAt?: boolean
+    status?: boolean
+    completedAt?: boolean
+    errorMessage?: boolean
+    screenerDataSnapshot?: boolean
+    nseMarketDataSnapshot?: boolean
+    llmIdeaOutput?: boolean
+    llmReportOutput?: boolean
+    llmConclusionJson?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }, ExtArgs["result"]["llmAnalysisRun"]>
+
+  export type LlmAnalysisRunSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    userQuery?: boolean
+    stockSymbol?: boolean
+    market?: boolean
+    requestedAt?: boolean
+    status?: boolean
+    completedAt?: boolean
+    errorMessage?: boolean
+    screenerDataSnapshot?: boolean
+    nseMarketDataSnapshot?: boolean
+    llmIdeaOutput?: boolean
+    llmReportOutput?: boolean
+    llmConclusionJson?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LlmAnalysisRunOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "userQuery" | "stockSymbol" | "market" | "requestedAt" | "status" | "completedAt" | "errorMessage" | "screenerDataSnapshot" | "nseMarketDataSnapshot" | "llmIdeaOutput" | "llmReportOutput" | "llmConclusionJson" | "createdAt" | "updatedAt", ExtArgs["result"]["llmAnalysisRun"]>
+  export type LlmAnalysisRunInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }
+  export type LlmAnalysisRunIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }
+  export type LlmAnalysisRunIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | LlmAnalysisRun$userArgs<ExtArgs>
+  }
+
+  export type $LlmAnalysisRunPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LlmAnalysisRun"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: number | null
+      userQuery: string
+      stockSymbol: string
+      market: string
+      requestedAt: Date
+      status: $Enums.LlmRunStatus
+      completedAt: Date | null
+      errorMessage: string | null
+      screenerDataSnapshot: Prisma.JsonValue | null
+      nseMarketDataSnapshot: Prisma.JsonValue | null
+      llmIdeaOutput: string | null
+      llmReportOutput: string | null
+      llmConclusionJson: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["llmAnalysisRun"]>
+    composites: {}
+  }
+
+  type LlmAnalysisRunGetPayload<S extends boolean | null | undefined | LlmAnalysisRunDefaultArgs> = $Result.GetResult<Prisma.$LlmAnalysisRunPayload, S>
+
+  type LlmAnalysisRunCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LlmAnalysisRunFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LlmAnalysisRunCountAggregateInputType | true
+    }
+
+  export interface LlmAnalysisRunDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LlmAnalysisRun'], meta: { name: 'LlmAnalysisRun' } }
+    /**
+     * Find zero or one LlmAnalysisRun that matches the filter.
+     * @param {LlmAnalysisRunFindUniqueArgs} args - Arguments to find a LlmAnalysisRun
+     * @example
+     * // Get one LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LlmAnalysisRunFindUniqueArgs>(args: SelectSubset<T, LlmAnalysisRunFindUniqueArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LlmAnalysisRun that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LlmAnalysisRunFindUniqueOrThrowArgs} args - Arguments to find a LlmAnalysisRun
+     * @example
+     * // Get one LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LlmAnalysisRunFindUniqueOrThrowArgs>(args: SelectSubset<T, LlmAnalysisRunFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LlmAnalysisRun that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunFindFirstArgs} args - Arguments to find a LlmAnalysisRun
+     * @example
+     * // Get one LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LlmAnalysisRunFindFirstArgs>(args?: SelectSubset<T, LlmAnalysisRunFindFirstArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LlmAnalysisRun that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunFindFirstOrThrowArgs} args - Arguments to find a LlmAnalysisRun
+     * @example
+     * // Get one LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LlmAnalysisRunFindFirstOrThrowArgs>(args?: SelectSubset<T, LlmAnalysisRunFindFirstOrThrowArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LlmAnalysisRuns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LlmAnalysisRuns
+     * const llmAnalysisRuns = await prisma.llmAnalysisRun.findMany()
+     * 
+     * // Get first 10 LlmAnalysisRuns
+     * const llmAnalysisRuns = await prisma.llmAnalysisRun.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const llmAnalysisRunWithIdOnly = await prisma.llmAnalysisRun.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LlmAnalysisRunFindManyArgs>(args?: SelectSubset<T, LlmAnalysisRunFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LlmAnalysisRun.
+     * @param {LlmAnalysisRunCreateArgs} args - Arguments to create a LlmAnalysisRun.
+     * @example
+     * // Create one LlmAnalysisRun
+     * const LlmAnalysisRun = await prisma.llmAnalysisRun.create({
+     *   data: {
+     *     // ... data to create a LlmAnalysisRun
+     *   }
+     * })
+     * 
+     */
+    create<T extends LlmAnalysisRunCreateArgs>(args: SelectSubset<T, LlmAnalysisRunCreateArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LlmAnalysisRuns.
+     * @param {LlmAnalysisRunCreateManyArgs} args - Arguments to create many LlmAnalysisRuns.
+     * @example
+     * // Create many LlmAnalysisRuns
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LlmAnalysisRunCreateManyArgs>(args?: SelectSubset<T, LlmAnalysisRunCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LlmAnalysisRuns and returns the data saved in the database.
+     * @param {LlmAnalysisRunCreateManyAndReturnArgs} args - Arguments to create many LlmAnalysisRuns.
+     * @example
+     * // Create many LlmAnalysisRuns
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LlmAnalysisRuns and only return the `id`
+     * const llmAnalysisRunWithIdOnly = await prisma.llmAnalysisRun.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LlmAnalysisRunCreateManyAndReturnArgs>(args?: SelectSubset<T, LlmAnalysisRunCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LlmAnalysisRun.
+     * @param {LlmAnalysisRunDeleteArgs} args - Arguments to delete one LlmAnalysisRun.
+     * @example
+     * // Delete one LlmAnalysisRun
+     * const LlmAnalysisRun = await prisma.llmAnalysisRun.delete({
+     *   where: {
+     *     // ... filter to delete one LlmAnalysisRun
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LlmAnalysisRunDeleteArgs>(args: SelectSubset<T, LlmAnalysisRunDeleteArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LlmAnalysisRun.
+     * @param {LlmAnalysisRunUpdateArgs} args - Arguments to update one LlmAnalysisRun.
+     * @example
+     * // Update one LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LlmAnalysisRunUpdateArgs>(args: SelectSubset<T, LlmAnalysisRunUpdateArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LlmAnalysisRuns.
+     * @param {LlmAnalysisRunDeleteManyArgs} args - Arguments to filter LlmAnalysisRuns to delete.
+     * @example
+     * // Delete a few LlmAnalysisRuns
+     * const { count } = await prisma.llmAnalysisRun.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LlmAnalysisRunDeleteManyArgs>(args?: SelectSubset<T, LlmAnalysisRunDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LlmAnalysisRuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LlmAnalysisRuns
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LlmAnalysisRunUpdateManyArgs>(args: SelectSubset<T, LlmAnalysisRunUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LlmAnalysisRuns and returns the data updated in the database.
+     * @param {LlmAnalysisRunUpdateManyAndReturnArgs} args - Arguments to update many LlmAnalysisRuns.
+     * @example
+     * // Update many LlmAnalysisRuns
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LlmAnalysisRuns and only return the `id`
+     * const llmAnalysisRunWithIdOnly = await prisma.llmAnalysisRun.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LlmAnalysisRunUpdateManyAndReturnArgs>(args: SelectSubset<T, LlmAnalysisRunUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LlmAnalysisRun.
+     * @param {LlmAnalysisRunUpsertArgs} args - Arguments to update or create a LlmAnalysisRun.
+     * @example
+     * // Update or create a LlmAnalysisRun
+     * const llmAnalysisRun = await prisma.llmAnalysisRun.upsert({
+     *   create: {
+     *     // ... data to create a LlmAnalysisRun
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LlmAnalysisRun we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LlmAnalysisRunUpsertArgs>(args: SelectSubset<T, LlmAnalysisRunUpsertArgs<ExtArgs>>): Prisma__LlmAnalysisRunClient<$Result.GetResult<Prisma.$LlmAnalysisRunPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LlmAnalysisRuns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunCountArgs} args - Arguments to filter LlmAnalysisRuns to count.
+     * @example
+     * // Count the number of LlmAnalysisRuns
+     * const count = await prisma.llmAnalysisRun.count({
+     *   where: {
+     *     // ... the filter for the LlmAnalysisRuns we want to count
+     *   }
+     * })
+    **/
+    count<T extends LlmAnalysisRunCountArgs>(
+      args?: Subset<T, LlmAnalysisRunCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LlmAnalysisRunCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LlmAnalysisRun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LlmAnalysisRunAggregateArgs>(args: Subset<T, LlmAnalysisRunAggregateArgs>): Prisma.PrismaPromise<GetLlmAnalysisRunAggregateType<T>>
+
+    /**
+     * Group by LlmAnalysisRun.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LlmAnalysisRunGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LlmAnalysisRunGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LlmAnalysisRunGroupByArgs['orderBy'] }
+        : { orderBy?: LlmAnalysisRunGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LlmAnalysisRunGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLlmAnalysisRunGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LlmAnalysisRun model
+   */
+  readonly fields: LlmAnalysisRunFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LlmAnalysisRun.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LlmAnalysisRunClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends LlmAnalysisRun$userArgs<ExtArgs> = {}>(args?: Subset<T, LlmAnalysisRun$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LlmAnalysisRun model
+   */
+  interface LlmAnalysisRunFieldRefs {
+    readonly id: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly userId: FieldRef<"LlmAnalysisRun", 'Int'>
+    readonly userQuery: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly stockSymbol: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly market: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly requestedAt: FieldRef<"LlmAnalysisRun", 'DateTime'>
+    readonly status: FieldRef<"LlmAnalysisRun", 'LlmRunStatus'>
+    readonly completedAt: FieldRef<"LlmAnalysisRun", 'DateTime'>
+    readonly errorMessage: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly screenerDataSnapshot: FieldRef<"LlmAnalysisRun", 'Json'>
+    readonly nseMarketDataSnapshot: FieldRef<"LlmAnalysisRun", 'Json'>
+    readonly llmIdeaOutput: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly llmReportOutput: FieldRef<"LlmAnalysisRun", 'String'>
+    readonly llmConclusionJson: FieldRef<"LlmAnalysisRun", 'Json'>
+    readonly createdAt: FieldRef<"LlmAnalysisRun", 'DateTime'>
+    readonly updatedAt: FieldRef<"LlmAnalysisRun", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LlmAnalysisRun findUnique
+   */
+  export type LlmAnalysisRunFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter, which LlmAnalysisRun to fetch.
+     */
+    where: LlmAnalysisRunWhereUniqueInput
+  }
+
+  /**
+   * LlmAnalysisRun findUniqueOrThrow
+   */
+  export type LlmAnalysisRunFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter, which LlmAnalysisRun to fetch.
+     */
+    where: LlmAnalysisRunWhereUniqueInput
+  }
+
+  /**
+   * LlmAnalysisRun findFirst
+   */
+  export type LlmAnalysisRunFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter, which LlmAnalysisRun to fetch.
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LlmAnalysisRuns to fetch.
+     */
+    orderBy?: LlmAnalysisRunOrderByWithRelationInput | LlmAnalysisRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LlmAnalysisRuns.
+     */
+    cursor?: LlmAnalysisRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LlmAnalysisRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LlmAnalysisRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LlmAnalysisRuns.
+     */
+    distinct?: LlmAnalysisRunScalarFieldEnum | LlmAnalysisRunScalarFieldEnum[]
+  }
+
+  /**
+   * LlmAnalysisRun findFirstOrThrow
+   */
+  export type LlmAnalysisRunFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter, which LlmAnalysisRun to fetch.
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LlmAnalysisRuns to fetch.
+     */
+    orderBy?: LlmAnalysisRunOrderByWithRelationInput | LlmAnalysisRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LlmAnalysisRuns.
+     */
+    cursor?: LlmAnalysisRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LlmAnalysisRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LlmAnalysisRuns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LlmAnalysisRuns.
+     */
+    distinct?: LlmAnalysisRunScalarFieldEnum | LlmAnalysisRunScalarFieldEnum[]
+  }
+
+  /**
+   * LlmAnalysisRun findMany
+   */
+  export type LlmAnalysisRunFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter, which LlmAnalysisRuns to fetch.
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LlmAnalysisRuns to fetch.
+     */
+    orderBy?: LlmAnalysisRunOrderByWithRelationInput | LlmAnalysisRunOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LlmAnalysisRuns.
+     */
+    cursor?: LlmAnalysisRunWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LlmAnalysisRuns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LlmAnalysisRuns.
+     */
+    skip?: number
+    distinct?: LlmAnalysisRunScalarFieldEnum | LlmAnalysisRunScalarFieldEnum[]
+  }
+
+  /**
+   * LlmAnalysisRun create
+   */
+  export type LlmAnalysisRunCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LlmAnalysisRun.
+     */
+    data: XOR<LlmAnalysisRunCreateInput, LlmAnalysisRunUncheckedCreateInput>
+  }
+
+  /**
+   * LlmAnalysisRun createMany
+   */
+  export type LlmAnalysisRunCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LlmAnalysisRuns.
+     */
+    data: LlmAnalysisRunCreateManyInput | LlmAnalysisRunCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LlmAnalysisRun createManyAndReturn
+   */
+  export type LlmAnalysisRunCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * The data used to create many LlmAnalysisRuns.
+     */
+    data: LlmAnalysisRunCreateManyInput | LlmAnalysisRunCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LlmAnalysisRun update
+   */
+  export type LlmAnalysisRunUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LlmAnalysisRun.
+     */
+    data: XOR<LlmAnalysisRunUpdateInput, LlmAnalysisRunUncheckedUpdateInput>
+    /**
+     * Choose, which LlmAnalysisRun to update.
+     */
+    where: LlmAnalysisRunWhereUniqueInput
+  }
+
+  /**
+   * LlmAnalysisRun updateMany
+   */
+  export type LlmAnalysisRunUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LlmAnalysisRuns.
+     */
+    data: XOR<LlmAnalysisRunUpdateManyMutationInput, LlmAnalysisRunUncheckedUpdateManyInput>
+    /**
+     * Filter which LlmAnalysisRuns to update
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * Limit how many LlmAnalysisRuns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LlmAnalysisRun updateManyAndReturn
+   */
+  export type LlmAnalysisRunUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * The data used to update LlmAnalysisRuns.
+     */
+    data: XOR<LlmAnalysisRunUpdateManyMutationInput, LlmAnalysisRunUncheckedUpdateManyInput>
+    /**
+     * Filter which LlmAnalysisRuns to update
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * Limit how many LlmAnalysisRuns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LlmAnalysisRun upsert
+   */
+  export type LlmAnalysisRunUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LlmAnalysisRun to update in case it exists.
+     */
+    where: LlmAnalysisRunWhereUniqueInput
+    /**
+     * In case the LlmAnalysisRun found by the `where` argument doesn't exist, create a new LlmAnalysisRun with this data.
+     */
+    create: XOR<LlmAnalysisRunCreateInput, LlmAnalysisRunUncheckedCreateInput>
+    /**
+     * In case the LlmAnalysisRun was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LlmAnalysisRunUpdateInput, LlmAnalysisRunUncheckedUpdateInput>
+  }
+
+  /**
+   * LlmAnalysisRun delete
+   */
+  export type LlmAnalysisRunDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+    /**
+     * Filter which LlmAnalysisRun to delete.
+     */
+    where: LlmAnalysisRunWhereUniqueInput
+  }
+
+  /**
+   * LlmAnalysisRun deleteMany
+   */
+  export type LlmAnalysisRunDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LlmAnalysisRuns to delete
+     */
+    where?: LlmAnalysisRunWhereInput
+    /**
+     * Limit how many LlmAnalysisRuns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LlmAnalysisRun.user
+   */
+  export type LlmAnalysisRun$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * LlmAnalysisRun without action
+   */
+  export type LlmAnalysisRunDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LlmAnalysisRun
+     */
+    select?: LlmAnalysisRunSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LlmAnalysisRun
+     */
+    omit?: LlmAnalysisRunOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LlmAnalysisRunInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10547,12 +13366,69 @@ export namespace Prisma {
   export type WatchlistScalarFieldEnum = (typeof WatchlistScalarFieldEnum)[keyof typeof WatchlistScalarFieldEnum]
 
 
+  export const PredictionRunScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    stockSymbol: 'stockSymbol',
+    market: 'market',
+    runIdFromML: 'runIdFromML',
+    status: 'status',
+    requestedAt: 'requestedAt',
+    completedAt: 'completedAt',
+    lstmResultsJson: 'lstmResultsJson',
+    gruResultsJson: 'gruResultsJson',
+    transformerResultsJson: 'transformerResultsJson',
+    polynomialResultsJson: 'polynomialResultsJson',
+    tradingSuggestionJson: 'tradingSuggestionJson',
+    aiAnalysisJson: 'aiAnalysisJson',
+    plotUrlsJson: 'plotUrlsJson',
+    pdfReportUrl: 'pdfReportUrl',
+    emailSentStatus: 'emailSentStatus',
+    mlServiceMessage: 'mlServiceMessage',
+    errorMessage: 'errorMessage',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PredictionRunScalarFieldEnum = (typeof PredictionRunScalarFieldEnum)[keyof typeof PredictionRunScalarFieldEnum]
+
+
+  export const LlmAnalysisRunScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    userQuery: 'userQuery',
+    stockSymbol: 'stockSymbol',
+    market: 'market',
+    requestedAt: 'requestedAt',
+    status: 'status',
+    completedAt: 'completedAt',
+    errorMessage: 'errorMessage',
+    screenerDataSnapshot: 'screenerDataSnapshot',
+    nseMarketDataSnapshot: 'nseMarketDataSnapshot',
+    llmIdeaOutput: 'llmIdeaOutput',
+    llmReportOutput: 'llmReportOutput',
+    llmConclusionJson: 'llmConclusionJson',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LlmAnalysisRunScalarFieldEnum = (typeof LlmAnalysisRunScalarFieldEnum)[keyof typeof LlmAnalysisRunScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -10569,6 +13445,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -10679,6 +13564,48 @@ export namespace Prisma {
    */
   export type ListEnumWatchlistTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WatchlistType[]'>
     
+
+
+  /**
+   * Reference to a field of type 'RunStatus'
+   */
+  export type EnumRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RunStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'RunStatus[]'
+   */
+  export type ListEnumRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RunStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'LlmRunStatus'
+   */
+  export type EnumLlmRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LlmRunStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'LlmRunStatus[]'
+   */
+  export type ListEnumLlmRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LlmRunStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -10699,6 +13626,8 @@ export namespace Prisma {
     watchlists?: WatchlistListRelationFilter
     zerodhaAccount?: XOR<ZerodhaAccountNullableScalarRelationFilter, ZerodhaAccountWhereInput> | null
     upstoxAccount?: XOR<UpstoxAccountNullableScalarRelationFilter, UpstoxAccountWhereInput> | null
+    predictionRuns?: PredictionRunListRelationFilter
+    llmAnalysisRuns?: LlmAnalysisRunListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -10713,6 +13642,8 @@ export namespace Prisma {
     watchlists?: WatchlistOrderByRelationAggregateInput
     zerodhaAccount?: ZerodhaAccountOrderByWithRelationInput
     upstoxAccount?: UpstoxAccountOrderByWithRelationInput
+    predictionRuns?: PredictionRunOrderByRelationAggregateInput
+    llmAnalysisRuns?: LlmAnalysisRunOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -10730,6 +13661,8 @@ export namespace Prisma {
     watchlists?: WatchlistListRelationFilter
     zerodhaAccount?: XOR<ZerodhaAccountNullableScalarRelationFilter, ZerodhaAccountWhereInput> | null
     upstoxAccount?: XOR<UpstoxAccountNullableScalarRelationFilter, UpstoxAccountWhereInput> | null
+    predictionRuns?: PredictionRunListRelationFilter
+    llmAnalysisRuns?: LlmAnalysisRunListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11200,6 +14133,255 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Watchlist"> | Date | string
   }
 
+  export type PredictionRunWhereInput = {
+    AND?: PredictionRunWhereInput | PredictionRunWhereInput[]
+    OR?: PredictionRunWhereInput[]
+    NOT?: PredictionRunWhereInput | PredictionRunWhereInput[]
+    id?: StringFilter<"PredictionRun"> | string
+    userId?: IntNullableFilter<"PredictionRun"> | number | null
+    stockSymbol?: StringFilter<"PredictionRun"> | string
+    market?: StringFilter<"PredictionRun"> | string
+    runIdFromML?: StringNullableFilter<"PredictionRun"> | string | null
+    status?: EnumRunStatusFilter<"PredictionRun"> | $Enums.RunStatus
+    requestedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    completedAt?: DateTimeNullableFilter<"PredictionRun"> | Date | string | null
+    lstmResultsJson?: JsonNullableFilter<"PredictionRun">
+    gruResultsJson?: JsonNullableFilter<"PredictionRun">
+    transformerResultsJson?: JsonNullableFilter<"PredictionRun">
+    polynomialResultsJson?: JsonNullableFilter<"PredictionRun">
+    tradingSuggestionJson?: JsonNullableFilter<"PredictionRun">
+    aiAnalysisJson?: JsonNullableFilter<"PredictionRun">
+    plotUrlsJson?: JsonNullableFilter<"PredictionRun">
+    pdfReportUrl?: StringNullableFilter<"PredictionRun"> | string | null
+    emailSentStatus?: StringNullableFilter<"PredictionRun"> | string | null
+    mlServiceMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    errorMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    createdAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    updatedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type PredictionRunOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    runIdFromML?: SortOrderInput | SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    lstmResultsJson?: SortOrderInput | SortOrder
+    gruResultsJson?: SortOrderInput | SortOrder
+    transformerResultsJson?: SortOrderInput | SortOrder
+    polynomialResultsJson?: SortOrderInput | SortOrder
+    tradingSuggestionJson?: SortOrderInput | SortOrder
+    aiAnalysisJson?: SortOrderInput | SortOrder
+    plotUrlsJson?: SortOrderInput | SortOrder
+    pdfReportUrl?: SortOrderInput | SortOrder
+    emailSentStatus?: SortOrderInput | SortOrder
+    mlServiceMessage?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PredictionRunWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    runIdFromML?: string
+    AND?: PredictionRunWhereInput | PredictionRunWhereInput[]
+    OR?: PredictionRunWhereInput[]
+    NOT?: PredictionRunWhereInput | PredictionRunWhereInput[]
+    userId?: IntNullableFilter<"PredictionRun"> | number | null
+    stockSymbol?: StringFilter<"PredictionRun"> | string
+    market?: StringFilter<"PredictionRun"> | string
+    status?: EnumRunStatusFilter<"PredictionRun"> | $Enums.RunStatus
+    requestedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    completedAt?: DateTimeNullableFilter<"PredictionRun"> | Date | string | null
+    lstmResultsJson?: JsonNullableFilter<"PredictionRun">
+    gruResultsJson?: JsonNullableFilter<"PredictionRun">
+    transformerResultsJson?: JsonNullableFilter<"PredictionRun">
+    polynomialResultsJson?: JsonNullableFilter<"PredictionRun">
+    tradingSuggestionJson?: JsonNullableFilter<"PredictionRun">
+    aiAnalysisJson?: JsonNullableFilter<"PredictionRun">
+    plotUrlsJson?: JsonNullableFilter<"PredictionRun">
+    pdfReportUrl?: StringNullableFilter<"PredictionRun"> | string | null
+    emailSentStatus?: StringNullableFilter<"PredictionRun"> | string | null
+    mlServiceMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    errorMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    createdAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    updatedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id" | "runIdFromML">
+
+  export type PredictionRunOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    runIdFromML?: SortOrderInput | SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    lstmResultsJson?: SortOrderInput | SortOrder
+    gruResultsJson?: SortOrderInput | SortOrder
+    transformerResultsJson?: SortOrderInput | SortOrder
+    polynomialResultsJson?: SortOrderInput | SortOrder
+    tradingSuggestionJson?: SortOrderInput | SortOrder
+    aiAnalysisJson?: SortOrderInput | SortOrder
+    plotUrlsJson?: SortOrderInput | SortOrder
+    pdfReportUrl?: SortOrderInput | SortOrder
+    emailSentStatus?: SortOrderInput | SortOrder
+    mlServiceMessage?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PredictionRunCountOrderByAggregateInput
+    _avg?: PredictionRunAvgOrderByAggregateInput
+    _max?: PredictionRunMaxOrderByAggregateInput
+    _min?: PredictionRunMinOrderByAggregateInput
+    _sum?: PredictionRunSumOrderByAggregateInput
+  }
+
+  export type PredictionRunScalarWhereWithAggregatesInput = {
+    AND?: PredictionRunScalarWhereWithAggregatesInput | PredictionRunScalarWhereWithAggregatesInput[]
+    OR?: PredictionRunScalarWhereWithAggregatesInput[]
+    NOT?: PredictionRunScalarWhereWithAggregatesInput | PredictionRunScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PredictionRun"> | string
+    userId?: IntNullableWithAggregatesFilter<"PredictionRun"> | number | null
+    stockSymbol?: StringWithAggregatesFilter<"PredictionRun"> | string
+    market?: StringWithAggregatesFilter<"PredictionRun"> | string
+    runIdFromML?: StringNullableWithAggregatesFilter<"PredictionRun"> | string | null
+    status?: EnumRunStatusWithAggregatesFilter<"PredictionRun"> | $Enums.RunStatus
+    requestedAt?: DateTimeWithAggregatesFilter<"PredictionRun"> | Date | string
+    completedAt?: DateTimeNullableWithAggregatesFilter<"PredictionRun"> | Date | string | null
+    lstmResultsJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    gruResultsJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    transformerResultsJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    polynomialResultsJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    tradingSuggestionJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    aiAnalysisJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    plotUrlsJson?: JsonNullableWithAggregatesFilter<"PredictionRun">
+    pdfReportUrl?: StringNullableWithAggregatesFilter<"PredictionRun"> | string | null
+    emailSentStatus?: StringNullableWithAggregatesFilter<"PredictionRun"> | string | null
+    mlServiceMessage?: StringNullableWithAggregatesFilter<"PredictionRun"> | string | null
+    errorMessage?: StringNullableWithAggregatesFilter<"PredictionRun"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PredictionRun"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PredictionRun"> | Date | string
+  }
+
+  export type LlmAnalysisRunWhereInput = {
+    AND?: LlmAnalysisRunWhereInput | LlmAnalysisRunWhereInput[]
+    OR?: LlmAnalysisRunWhereInput[]
+    NOT?: LlmAnalysisRunWhereInput | LlmAnalysisRunWhereInput[]
+    id?: StringFilter<"LlmAnalysisRun"> | string
+    userId?: IntNullableFilter<"LlmAnalysisRun"> | number | null
+    userQuery?: StringFilter<"LlmAnalysisRun"> | string
+    stockSymbol?: StringFilter<"LlmAnalysisRun"> | string
+    market?: StringFilter<"LlmAnalysisRun"> | string
+    requestedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    status?: EnumLlmRunStatusFilter<"LlmAnalysisRun"> | $Enums.LlmRunStatus
+    completedAt?: DateTimeNullableFilter<"LlmAnalysisRun"> | Date | string | null
+    errorMessage?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    screenerDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    nseMarketDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    llmIdeaOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmReportOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmConclusionJson?: JsonNullableFilter<"LlmAnalysisRun">
+    createdAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    updatedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type LlmAnalysisRunOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    userQuery?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    requestedAt?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    screenerDataSnapshot?: SortOrderInput | SortOrder
+    nseMarketDataSnapshot?: SortOrderInput | SortOrder
+    llmIdeaOutput?: SortOrderInput | SortOrder
+    llmReportOutput?: SortOrderInput | SortOrder
+    llmConclusionJson?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type LlmAnalysisRunWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LlmAnalysisRunWhereInput | LlmAnalysisRunWhereInput[]
+    OR?: LlmAnalysisRunWhereInput[]
+    NOT?: LlmAnalysisRunWhereInput | LlmAnalysisRunWhereInput[]
+    userId?: IntNullableFilter<"LlmAnalysisRun"> | number | null
+    userQuery?: StringFilter<"LlmAnalysisRun"> | string
+    stockSymbol?: StringFilter<"LlmAnalysisRun"> | string
+    market?: StringFilter<"LlmAnalysisRun"> | string
+    requestedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    status?: EnumLlmRunStatusFilter<"LlmAnalysisRun"> | $Enums.LlmRunStatus
+    completedAt?: DateTimeNullableFilter<"LlmAnalysisRun"> | Date | string | null
+    errorMessage?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    screenerDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    nseMarketDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    llmIdeaOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmReportOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmConclusionJson?: JsonNullableFilter<"LlmAnalysisRun">
+    createdAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    updatedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type LlmAnalysisRunOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    userQuery?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    requestedAt?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    screenerDataSnapshot?: SortOrderInput | SortOrder
+    nseMarketDataSnapshot?: SortOrderInput | SortOrder
+    llmIdeaOutput?: SortOrderInput | SortOrder
+    llmReportOutput?: SortOrderInput | SortOrder
+    llmConclusionJson?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LlmAnalysisRunCountOrderByAggregateInput
+    _avg?: LlmAnalysisRunAvgOrderByAggregateInput
+    _max?: LlmAnalysisRunMaxOrderByAggregateInput
+    _min?: LlmAnalysisRunMinOrderByAggregateInput
+    _sum?: LlmAnalysisRunSumOrderByAggregateInput
+  }
+
+  export type LlmAnalysisRunScalarWhereWithAggregatesInput = {
+    AND?: LlmAnalysisRunScalarWhereWithAggregatesInput | LlmAnalysisRunScalarWhereWithAggregatesInput[]
+    OR?: LlmAnalysisRunScalarWhereWithAggregatesInput[]
+    NOT?: LlmAnalysisRunScalarWhereWithAggregatesInput | LlmAnalysisRunScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LlmAnalysisRun"> | string
+    userId?: IntNullableWithAggregatesFilter<"LlmAnalysisRun"> | number | null
+    userQuery?: StringWithAggregatesFilter<"LlmAnalysisRun"> | string
+    stockSymbol?: StringWithAggregatesFilter<"LlmAnalysisRun"> | string
+    market?: StringWithAggregatesFilter<"LlmAnalysisRun"> | string
+    requestedAt?: DateTimeWithAggregatesFilter<"LlmAnalysisRun"> | Date | string
+    status?: EnumLlmRunStatusWithAggregatesFilter<"LlmAnalysisRun"> | $Enums.LlmRunStatus
+    completedAt?: DateTimeNullableWithAggregatesFilter<"LlmAnalysisRun"> | Date | string | null
+    errorMessage?: StringNullableWithAggregatesFilter<"LlmAnalysisRun"> | string | null
+    screenerDataSnapshot?: JsonNullableWithAggregatesFilter<"LlmAnalysisRun">
+    nseMarketDataSnapshot?: JsonNullableWithAggregatesFilter<"LlmAnalysisRun">
+    llmIdeaOutput?: StringNullableWithAggregatesFilter<"LlmAnalysisRun"> | string | null
+    llmReportOutput?: StringNullableWithAggregatesFilter<"LlmAnalysisRun"> | string | null
+    llmConclusionJson?: JsonNullableWithAggregatesFilter<"LlmAnalysisRun">
+    createdAt?: DateTimeWithAggregatesFilter<"LlmAnalysisRun"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LlmAnalysisRun"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -11211,6 +14393,8 @@ export namespace Prisma {
     watchlists?: WatchlistCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11225,6 +14409,8 @@ export namespace Prisma {
     watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11238,6 +14424,8 @@ export namespace Prisma {
     watchlists?: WatchlistUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11252,6 +14440,8 @@ export namespace Prisma {
     watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11720,6 +14910,305 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PredictionRunCreateInput = {
+    id?: string
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutPredictionRunsInput
+  }
+
+  export type PredictionRunUncheckedCreateInput = {
+    id?: string
+    userId?: number | null
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionRunUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutPredictionRunsNestedInput
+  }
+
+  export type PredictionRunUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionRunCreateManyInput = {
+    id?: string
+    userId?: number | null
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionRunUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionRunUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunCreateInput = {
+    id?: string
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutLlmAnalysisRunsInput
+  }
+
+  export type LlmAnalysisRunUncheckedCreateInput = {
+    id?: string
+    userId?: number | null
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LlmAnalysisRunUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutLlmAnalysisRunsNestedInput
+  }
+
+  export type LlmAnalysisRunUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunCreateManyInput = {
+    id?: string
+    userId?: number | null
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LlmAnalysisRunUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableIntFieldUpdateOperationsInput | number | null
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11801,6 +15290,18 @@ export namespace Prisma {
     isNot?: UpstoxAccountWhereInput | null
   }
 
+  export type PredictionRunListRelationFilter = {
+    every?: PredictionRunWhereInput
+    some?: PredictionRunWhereInput
+    none?: PredictionRunWhereInput
+  }
+
+  export type LlmAnalysisRunListRelationFilter = {
+    every?: LlmAnalysisRunWhereInput
+    some?: LlmAnalysisRunWhereInput
+    none?: LlmAnalysisRunWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -11811,6 +15312,14 @@ export namespace Prisma {
   }
 
   export type WatchlistOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PredictionRunOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LlmAnalysisRunOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12289,6 +15798,271 @@ export namespace Prisma {
     _max?: NestedEnumWatchlistTypeFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type EnumRunStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RunStatus | EnumRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRunStatusFilter<$PrismaModel> | $Enums.RunStatus
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type PredictionRunCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    runIdFromML?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    completedAt?: SortOrder
+    lstmResultsJson?: SortOrder
+    gruResultsJson?: SortOrder
+    transformerResultsJson?: SortOrder
+    polynomialResultsJson?: SortOrder
+    tradingSuggestionJson?: SortOrder
+    aiAnalysisJson?: SortOrder
+    plotUrlsJson?: SortOrder
+    pdfReportUrl?: SortOrder
+    emailSentStatus?: SortOrder
+    mlServiceMessage?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PredictionRunAvgOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type PredictionRunMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    runIdFromML?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    completedAt?: SortOrder
+    pdfReportUrl?: SortOrder
+    emailSentStatus?: SortOrder
+    mlServiceMessage?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PredictionRunMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    runIdFromML?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    completedAt?: SortOrder
+    pdfReportUrl?: SortOrder
+    emailSentStatus?: SortOrder
+    mlServiceMessage?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PredictionRunSumOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRunStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RunStatus | EnumRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRunStatusWithAggregatesFilter<$PrismaModel> | $Enums.RunStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRunStatusFilter<$PrismaModel>
+    _max?: NestedEnumRunStatusFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type EnumLlmRunStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.LlmRunStatus | EnumLlmRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumLlmRunStatusFilter<$PrismaModel> | $Enums.LlmRunStatus
+  }
+
+  export type LlmAnalysisRunCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    userQuery?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    requestedAt?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    errorMessage?: SortOrder
+    screenerDataSnapshot?: SortOrder
+    nseMarketDataSnapshot?: SortOrder
+    llmIdeaOutput?: SortOrder
+    llmReportOutput?: SortOrder
+    llmConclusionJson?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LlmAnalysisRunAvgOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type LlmAnalysisRunMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    userQuery?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    requestedAt?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    errorMessage?: SortOrder
+    llmIdeaOutput?: SortOrder
+    llmReportOutput?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LlmAnalysisRunMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    userQuery?: SortOrder
+    stockSymbol?: SortOrder
+    market?: SortOrder
+    requestedAt?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    errorMessage?: SortOrder
+    llmIdeaOutput?: SortOrder
+    llmReportOutput?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LlmAnalysisRunSumOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type EnumLlmRunStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LlmRunStatus | EnumLlmRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumLlmRunStatusWithAggregatesFilter<$PrismaModel> | $Enums.LlmRunStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLlmRunStatusFilter<$PrismaModel>
+    _max?: NestedEnumLlmRunStatusFilter<$PrismaModel>
+  }
+
   export type PortfolioCreateNestedManyWithoutUserInput = {
     create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
@@ -12315,6 +16089,20 @@ export namespace Prisma {
     connect?: UpstoxAccountWhereUniqueInput
   }
 
+  export type PredictionRunCreateNestedManyWithoutUserInput = {
+    create?: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput> | PredictionRunCreateWithoutUserInput[] | PredictionRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PredictionRunCreateOrConnectWithoutUserInput | PredictionRunCreateOrConnectWithoutUserInput[]
+    createMany?: PredictionRunCreateManyUserInputEnvelope
+    connect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+  }
+
+  export type LlmAnalysisRunCreateNestedManyWithoutUserInput = {
+    create?: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput> | LlmAnalysisRunCreateWithoutUserInput[] | LlmAnalysisRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LlmAnalysisRunCreateOrConnectWithoutUserInput | LlmAnalysisRunCreateOrConnectWithoutUserInput[]
+    createMany?: LlmAnalysisRunCreateManyUserInputEnvelope
+    connect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+  }
+
   export type PortfolioUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
@@ -12339,6 +16127,20 @@ export namespace Prisma {
     create?: XOR<UpstoxAccountCreateWithoutUserInput, UpstoxAccountUncheckedCreateWithoutUserInput>
     connectOrCreate?: UpstoxAccountCreateOrConnectWithoutUserInput
     connect?: UpstoxAccountWhereUniqueInput
+  }
+
+  export type PredictionRunUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput> | PredictionRunCreateWithoutUserInput[] | PredictionRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PredictionRunCreateOrConnectWithoutUserInput | PredictionRunCreateOrConnectWithoutUserInput[]
+    createMany?: PredictionRunCreateManyUserInputEnvelope
+    connect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+  }
+
+  export type LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput> | LlmAnalysisRunCreateWithoutUserInput[] | LlmAnalysisRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LlmAnalysisRunCreateOrConnectWithoutUserInput | LlmAnalysisRunCreateOrConnectWithoutUserInput[]
+    createMany?: LlmAnalysisRunCreateManyUserInputEnvelope
+    connect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -12405,6 +16207,34 @@ export namespace Prisma {
     update?: XOR<XOR<UpstoxAccountUpdateToOneWithWhereWithoutUserInput, UpstoxAccountUpdateWithoutUserInput>, UpstoxAccountUncheckedUpdateWithoutUserInput>
   }
 
+  export type PredictionRunUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput> | PredictionRunCreateWithoutUserInput[] | PredictionRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PredictionRunCreateOrConnectWithoutUserInput | PredictionRunCreateOrConnectWithoutUserInput[]
+    upsert?: PredictionRunUpsertWithWhereUniqueWithoutUserInput | PredictionRunUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PredictionRunCreateManyUserInputEnvelope
+    set?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    disconnect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    delete?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    connect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    update?: PredictionRunUpdateWithWhereUniqueWithoutUserInput | PredictionRunUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PredictionRunUpdateManyWithWhereWithoutUserInput | PredictionRunUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PredictionRunScalarWhereInput | PredictionRunScalarWhereInput[]
+  }
+
+  export type LlmAnalysisRunUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput> | LlmAnalysisRunCreateWithoutUserInput[] | LlmAnalysisRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LlmAnalysisRunCreateOrConnectWithoutUserInput | LlmAnalysisRunCreateOrConnectWithoutUserInput[]
+    upsert?: LlmAnalysisRunUpsertWithWhereUniqueWithoutUserInput | LlmAnalysisRunUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LlmAnalysisRunCreateManyUserInputEnvelope
+    set?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    disconnect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    delete?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    connect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    update?: LlmAnalysisRunUpdateWithWhereUniqueWithoutUserInput | LlmAnalysisRunUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LlmAnalysisRunUpdateManyWithWhereWithoutUserInput | LlmAnalysisRunUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LlmAnalysisRunScalarWhereInput | LlmAnalysisRunScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -12459,6 +16289,34 @@ export namespace Prisma {
     delete?: UpstoxAccountWhereInput | boolean
     connect?: UpstoxAccountWhereUniqueInput
     update?: XOR<XOR<UpstoxAccountUpdateToOneWithWhereWithoutUserInput, UpstoxAccountUpdateWithoutUserInput>, UpstoxAccountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PredictionRunUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput> | PredictionRunCreateWithoutUserInput[] | PredictionRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PredictionRunCreateOrConnectWithoutUserInput | PredictionRunCreateOrConnectWithoutUserInput[]
+    upsert?: PredictionRunUpsertWithWhereUniqueWithoutUserInput | PredictionRunUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PredictionRunCreateManyUserInputEnvelope
+    set?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    disconnect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    delete?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    connect?: PredictionRunWhereUniqueInput | PredictionRunWhereUniqueInput[]
+    update?: PredictionRunUpdateWithWhereUniqueWithoutUserInput | PredictionRunUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PredictionRunUpdateManyWithWhereWithoutUserInput | PredictionRunUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PredictionRunScalarWhereInput | PredictionRunScalarWhereInput[]
+  }
+
+  export type LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput> | LlmAnalysisRunCreateWithoutUserInput[] | LlmAnalysisRunUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LlmAnalysisRunCreateOrConnectWithoutUserInput | LlmAnalysisRunCreateOrConnectWithoutUserInput[]
+    upsert?: LlmAnalysisRunUpsertWithWhereUniqueWithoutUserInput | LlmAnalysisRunUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LlmAnalysisRunCreateManyUserInputEnvelope
+    set?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    disconnect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    delete?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    connect?: LlmAnalysisRunWhereUniqueInput | LlmAnalysisRunWhereUniqueInput[]
+    update?: LlmAnalysisRunUpdateWithWhereUniqueWithoutUserInput | LlmAnalysisRunUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LlmAnalysisRunUpdateManyWithWhereWithoutUserInput | LlmAnalysisRunUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LlmAnalysisRunScalarWhereInput | LlmAnalysisRunScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutZerodhaAccountInput = {
@@ -12535,6 +16393,58 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutWatchlistsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWatchlistsInput, UserUpdateWithoutWatchlistsInput>, UserUncheckedUpdateWithoutWatchlistsInput>
+  }
+
+  export type UserCreateNestedOneWithoutPredictionRunsInput = {
+    create?: XOR<UserCreateWithoutPredictionRunsInput, UserUncheckedCreateWithoutPredictionRunsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPredictionRunsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumRunStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RunStatus
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneWithoutPredictionRunsNestedInput = {
+    create?: XOR<UserCreateWithoutPredictionRunsInput, UserUncheckedCreateWithoutPredictionRunsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPredictionRunsInput
+    upsert?: UserUpsertWithoutPredictionRunsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPredictionRunsInput, UserUpdateWithoutPredictionRunsInput>, UserUncheckedUpdateWithoutPredictionRunsInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserCreateNestedOneWithoutLlmAnalysisRunsInput = {
+    create?: XOR<UserCreateWithoutLlmAnalysisRunsInput, UserUncheckedCreateWithoutLlmAnalysisRunsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLlmAnalysisRunsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumLlmRunStatusFieldUpdateOperationsInput = {
+    set?: $Enums.LlmRunStatus
+  }
+
+  export type UserUpdateOneWithoutLlmAnalysisRunsNestedInput = {
+    create?: XOR<UserCreateWithoutLlmAnalysisRunsInput, UserUncheckedCreateWithoutLlmAnalysisRunsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLlmAnalysisRunsInput
+    upsert?: UserUpsertWithoutLlmAnalysisRunsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLlmAnalysisRunsInput, UserUpdateWithoutLlmAnalysisRunsInput>, UserUncheckedUpdateWithoutLlmAnalysisRunsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12753,6 +16663,115 @@ export namespace Prisma {
     _max?: NestedEnumWatchlistTypeFilter<$PrismaModel>
   }
 
+  export type NestedEnumRunStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RunStatus | EnumRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRunStatusFilter<$PrismaModel> | $Enums.RunStatus
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumRunStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RunStatus | EnumRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RunStatus[] | ListEnumRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRunStatusWithAggregatesFilter<$PrismaModel> | $Enums.RunStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRunStatusFilter<$PrismaModel>
+    _max?: NestedEnumRunStatusFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumLlmRunStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.LlmRunStatus | EnumLlmRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumLlmRunStatusFilter<$PrismaModel> | $Enums.LlmRunStatus
+  }
+
+  export type NestedEnumLlmRunStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LlmRunStatus | EnumLlmRunStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LlmRunStatus[] | ListEnumLlmRunStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumLlmRunStatusWithAggregatesFilter<$PrismaModel> | $Enums.LlmRunStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLlmRunStatusFilter<$PrismaModel>
+    _max?: NestedEnumLlmRunStatusFilter<$PrismaModel>
+  }
+
   export type PortfolioCreateWithoutUserInput = {
     type: $Enums.PortfolioType
     stockSymbol: string
@@ -12841,6 +16860,108 @@ export namespace Prisma {
   export type UpstoxAccountCreateOrConnectWithoutUserInput = {
     where: UpstoxAccountWhereUniqueInput
     create: XOR<UpstoxAccountCreateWithoutUserInput, UpstoxAccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type PredictionRunCreateWithoutUserInput = {
+    id?: string
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionRunUncheckedCreateWithoutUserInput = {
+    id?: string
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PredictionRunCreateOrConnectWithoutUserInput = {
+    where: PredictionRunWhereUniqueInput
+    create: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput>
+  }
+
+  export type PredictionRunCreateManyUserInputEnvelope = {
+    data: PredictionRunCreateManyUserInput | PredictionRunCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LlmAnalysisRunCreateWithoutUserInput = {
+    id?: string
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LlmAnalysisRunUncheckedCreateWithoutUserInput = {
+    id?: string
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LlmAnalysisRunCreateOrConnectWithoutUserInput = {
+    where: LlmAnalysisRunWhereUniqueInput
+    create: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput>
+  }
+
+  export type LlmAnalysisRunCreateManyUserInputEnvelope = {
+    data: LlmAnalysisRunCreateManyUserInput | LlmAnalysisRunCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type PortfolioUpsertWithWhereUniqueWithoutUserInput = {
@@ -12951,6 +17072,87 @@ export namespace Prisma {
     linkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PredictionRunUpsertWithWhereUniqueWithoutUserInput = {
+    where: PredictionRunWhereUniqueInput
+    update: XOR<PredictionRunUpdateWithoutUserInput, PredictionRunUncheckedUpdateWithoutUserInput>
+    create: XOR<PredictionRunCreateWithoutUserInput, PredictionRunUncheckedCreateWithoutUserInput>
+  }
+
+  export type PredictionRunUpdateWithWhereUniqueWithoutUserInput = {
+    where: PredictionRunWhereUniqueInput
+    data: XOR<PredictionRunUpdateWithoutUserInput, PredictionRunUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PredictionRunUpdateManyWithWhereWithoutUserInput = {
+    where: PredictionRunScalarWhereInput
+    data: XOR<PredictionRunUpdateManyMutationInput, PredictionRunUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PredictionRunScalarWhereInput = {
+    AND?: PredictionRunScalarWhereInput | PredictionRunScalarWhereInput[]
+    OR?: PredictionRunScalarWhereInput[]
+    NOT?: PredictionRunScalarWhereInput | PredictionRunScalarWhereInput[]
+    id?: StringFilter<"PredictionRun"> | string
+    userId?: IntNullableFilter<"PredictionRun"> | number | null
+    stockSymbol?: StringFilter<"PredictionRun"> | string
+    market?: StringFilter<"PredictionRun"> | string
+    runIdFromML?: StringNullableFilter<"PredictionRun"> | string | null
+    status?: EnumRunStatusFilter<"PredictionRun"> | $Enums.RunStatus
+    requestedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    completedAt?: DateTimeNullableFilter<"PredictionRun"> | Date | string | null
+    lstmResultsJson?: JsonNullableFilter<"PredictionRun">
+    gruResultsJson?: JsonNullableFilter<"PredictionRun">
+    transformerResultsJson?: JsonNullableFilter<"PredictionRun">
+    polynomialResultsJson?: JsonNullableFilter<"PredictionRun">
+    tradingSuggestionJson?: JsonNullableFilter<"PredictionRun">
+    aiAnalysisJson?: JsonNullableFilter<"PredictionRun">
+    plotUrlsJson?: JsonNullableFilter<"PredictionRun">
+    pdfReportUrl?: StringNullableFilter<"PredictionRun"> | string | null
+    emailSentStatus?: StringNullableFilter<"PredictionRun"> | string | null
+    mlServiceMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    errorMessage?: StringNullableFilter<"PredictionRun"> | string | null
+    createdAt?: DateTimeFilter<"PredictionRun"> | Date | string
+    updatedAt?: DateTimeFilter<"PredictionRun"> | Date | string
+  }
+
+  export type LlmAnalysisRunUpsertWithWhereUniqueWithoutUserInput = {
+    where: LlmAnalysisRunWhereUniqueInput
+    update: XOR<LlmAnalysisRunUpdateWithoutUserInput, LlmAnalysisRunUncheckedUpdateWithoutUserInput>
+    create: XOR<LlmAnalysisRunCreateWithoutUserInput, LlmAnalysisRunUncheckedCreateWithoutUserInput>
+  }
+
+  export type LlmAnalysisRunUpdateWithWhereUniqueWithoutUserInput = {
+    where: LlmAnalysisRunWhereUniqueInput
+    data: XOR<LlmAnalysisRunUpdateWithoutUserInput, LlmAnalysisRunUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LlmAnalysisRunUpdateManyWithWhereWithoutUserInput = {
+    where: LlmAnalysisRunScalarWhereInput
+    data: XOR<LlmAnalysisRunUpdateManyMutationInput, LlmAnalysisRunUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LlmAnalysisRunScalarWhereInput = {
+    AND?: LlmAnalysisRunScalarWhereInput | LlmAnalysisRunScalarWhereInput[]
+    OR?: LlmAnalysisRunScalarWhereInput[]
+    NOT?: LlmAnalysisRunScalarWhereInput | LlmAnalysisRunScalarWhereInput[]
+    id?: StringFilter<"LlmAnalysisRun"> | string
+    userId?: IntNullableFilter<"LlmAnalysisRun"> | number | null
+    userQuery?: StringFilter<"LlmAnalysisRun"> | string
+    stockSymbol?: StringFilter<"LlmAnalysisRun"> | string
+    market?: StringFilter<"LlmAnalysisRun"> | string
+    requestedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    status?: EnumLlmRunStatusFilter<"LlmAnalysisRun"> | $Enums.LlmRunStatus
+    completedAt?: DateTimeNullableFilter<"LlmAnalysisRun"> | Date | string | null
+    errorMessage?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    screenerDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    nseMarketDataSnapshot?: JsonNullableFilter<"LlmAnalysisRun">
+    llmIdeaOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmReportOutput?: StringNullableFilter<"LlmAnalysisRun"> | string | null
+    llmConclusionJson?: JsonNullableFilter<"LlmAnalysisRun">
+    createdAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+    updatedAt?: DateTimeFilter<"LlmAnalysisRun"> | Date | string
+  }
+
   export type UserCreateWithoutZerodhaAccountInput = {
     name: string
     email: string
@@ -12961,6 +17163,8 @@ export namespace Prisma {
     portfolios?: PortfolioCreateNestedManyWithoutUserInput
     watchlists?: WatchlistCreateNestedManyWithoutUserInput
     upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutZerodhaAccountInput = {
@@ -12974,6 +17178,8 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
     upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutZerodhaAccountInput = {
@@ -13002,6 +17208,8 @@ export namespace Prisma {
     portfolios?: PortfolioUpdateManyWithoutUserNestedInput
     watchlists?: WatchlistUpdateManyWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutZerodhaAccountInput = {
@@ -13015,6 +17223,8 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutUpstoxAccountInput = {
@@ -13027,6 +17237,8 @@ export namespace Prisma {
     portfolios?: PortfolioCreateNestedManyWithoutUserInput
     watchlists?: WatchlistCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUpstoxAccountInput = {
@@ -13040,6 +17252,8 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUpstoxAccountInput = {
@@ -13068,6 +17282,8 @@ export namespace Prisma {
     portfolios?: PortfolioUpdateManyWithoutUserNestedInput
     watchlists?: WatchlistUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUpstoxAccountInput = {
@@ -13081,6 +17297,8 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPortfoliosInput = {
@@ -13093,6 +17311,8 @@ export namespace Prisma {
     watchlists?: WatchlistCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPortfoliosInput = {
@@ -13106,6 +17326,8 @@ export namespace Prisma {
     watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPortfoliosInput = {
@@ -13134,6 +17356,8 @@ export namespace Prisma {
     watchlists?: WatchlistUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPortfoliosInput = {
@@ -13147,6 +17371,8 @@ export namespace Prisma {
     watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWatchlistsInput = {
@@ -13159,6 +17385,8 @@ export namespace Prisma {
     portfolios?: PortfolioCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWatchlistsInput = {
@@ -13172,6 +17400,8 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
     zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
     upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWatchlistsInput = {
@@ -13200,6 +17430,8 @@ export namespace Prisma {
     portfolios?: PortfolioUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWatchlistsInput = {
@@ -13213,6 +17445,156 @@ export namespace Prisma {
     portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
     zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
     upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPredictionRunsInput = {
+    name: string
+    email: string
+    password?: string | null
+    authMethod: $Enums.AuthMethod
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    portfolios?: PortfolioCreateNestedManyWithoutUserInput
+    watchlists?: WatchlistCreateNestedManyWithoutUserInput
+    zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
+    upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPredictionRunsInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    authMethod: $Enums.AuthMethod
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
+    watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
+    zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
+    upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPredictionRunsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPredictionRunsInput, UserUncheckedCreateWithoutPredictionRunsInput>
+  }
+
+  export type UserUpsertWithoutPredictionRunsInput = {
+    update: XOR<UserUpdateWithoutPredictionRunsInput, UserUncheckedUpdateWithoutPredictionRunsInput>
+    create: XOR<UserCreateWithoutPredictionRunsInput, UserUncheckedCreateWithoutPredictionRunsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPredictionRunsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPredictionRunsInput, UserUncheckedUpdateWithoutPredictionRunsInput>
+  }
+
+  export type UserUpdateWithoutPredictionRunsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    authMethod?: EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
+    watchlists?: WatchlistUpdateManyWithoutUserNestedInput
+    zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
+    upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPredictionRunsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    authMethod?: EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
+    watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
+    zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
+    upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    llmAnalysisRuns?: LlmAnalysisRunUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutLlmAnalysisRunsInput = {
+    name: string
+    email: string
+    password?: string | null
+    authMethod: $Enums.AuthMethod
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    portfolios?: PortfolioCreateNestedManyWithoutUserInput
+    watchlists?: WatchlistCreateNestedManyWithoutUserInput
+    zerodhaAccount?: ZerodhaAccountCreateNestedOneWithoutUserInput
+    upstoxAccount?: UpstoxAccountCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLlmAnalysisRunsInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    authMethod: $Enums.AuthMethod
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
+    watchlists?: WatchlistUncheckedCreateNestedManyWithoutUserInput
+    zerodhaAccount?: ZerodhaAccountUncheckedCreateNestedOneWithoutUserInput
+    upstoxAccount?: UpstoxAccountUncheckedCreateNestedOneWithoutUserInput
+    predictionRuns?: PredictionRunUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLlmAnalysisRunsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLlmAnalysisRunsInput, UserUncheckedCreateWithoutLlmAnalysisRunsInput>
+  }
+
+  export type UserUpsertWithoutLlmAnalysisRunsInput = {
+    update: XOR<UserUpdateWithoutLlmAnalysisRunsInput, UserUncheckedUpdateWithoutLlmAnalysisRunsInput>
+    create: XOR<UserCreateWithoutLlmAnalysisRunsInput, UserUncheckedCreateWithoutLlmAnalysisRunsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLlmAnalysisRunsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLlmAnalysisRunsInput, UserUncheckedUpdateWithoutLlmAnalysisRunsInput>
+  }
+
+  export type UserUpdateWithoutLlmAnalysisRunsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    authMethod?: EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
+    watchlists?: WatchlistUpdateManyWithoutUserNestedInput
+    zerodhaAccount?: ZerodhaAccountUpdateOneWithoutUserNestedInput
+    upstoxAccount?: UpstoxAccountUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLlmAnalysisRunsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    authMethod?: EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
+    watchlists?: WatchlistUncheckedUpdateManyWithoutUserNestedInput
+    zerodhaAccount?: ZerodhaAccountUncheckedUpdateOneWithoutUserNestedInput
+    upstoxAccount?: UpstoxAccountUncheckedUpdateOneWithoutUserNestedInput
+    predictionRuns?: PredictionRunUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PortfolioCreateManyUserInput = {
@@ -13229,6 +17611,47 @@ export namespace Prisma {
     type: $Enums.WatchlistType
     stockSymbol: string
     createdAt?: Date | string
+  }
+
+  export type PredictionRunCreateManyUserInput = {
+    id?: string
+    stockSymbol: string
+    market: string
+    runIdFromML?: string | null
+    status?: $Enums.RunStatus
+    requestedAt?: Date | string
+    completedAt?: Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: string | null
+    emailSentStatus?: string | null
+    mlServiceMessage?: string | null
+    errorMessage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LlmAnalysisRunCreateManyUserInput = {
+    id?: string
+    userQuery: string
+    stockSymbol: string
+    market: string
+    requestedAt?: Date | string
+    status?: $Enums.LlmRunStatus
+    completedAt?: Date | string | null
+    errorMessage?: string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: string | null
+    llmReportOutput?: string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PortfolioUpdateWithoutUserInput = {
@@ -13275,6 +17698,129 @@ export namespace Prisma {
     type?: EnumWatchlistTypeFieldUpdateOperationsInput | $Enums.WatchlistType
     stockSymbol?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionRunUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionRunUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PredictionRunUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    runIdFromML?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRunStatusFieldUpdateOperationsInput | $Enums.RunStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lstmResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    gruResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    transformerResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    polynomialResultsJson?: NullableJsonNullValueInput | InputJsonValue
+    tradingSuggestionJson?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysisJson?: NullableJsonNullValueInput | InputJsonValue
+    plotUrlsJson?: NullableJsonNullValueInput | InputJsonValue
+    pdfReportUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    emailSentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    mlServiceMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LlmAnalysisRunUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userQuery?: StringFieldUpdateOperationsInput | string
+    stockSymbol?: StringFieldUpdateOperationsInput | string
+    market?: StringFieldUpdateOperationsInput | string
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumLlmRunStatusFieldUpdateOperationsInput | $Enums.LlmRunStatus
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    screenerDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    nseMarketDataSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    llmIdeaOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmReportOutput?: NullableStringFieldUpdateOperationsInput | string | null
+    llmConclusionJson?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -23,6 +23,9 @@ model User {
   upstoxAccount   UpstoxAccount?
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
+  predictionRuns  PredictionRun[]   // inverse relation
+
+  llmAnalysisRuns LlmAnalysisRun[] @relation("UserLlmAnalyses") // For this LLM info service
 }
 
 enum AuthMethod {
@@ -125,3 +128,98 @@ enum WatchlistType {
   CRYPTO
 }
 
+// schema.prisma
+
+// ... (your existing User, Portfolio, Watchlist, Stock models, etc.) ...
+// schema.prisma
+// ...
+
+model PredictionRun {
+  id            String   @id @default(cuid())
+  userId        Int?     // Link to user
+  user          User?    @relation(fields: [userId], references: [id])
+  stockSymbol   String
+  market        String
+  runIdFromML   String?   @unique // The run_id from FastAPI, make it optional initially
+  status        RunStatus @default(PENDING)
+  
+  requestedAt   DateTime @default(now())
+  completedAt   DateTime?
+  
+  // Store key results as JSON from your FastAPI ML service response
+  lstmResultsJson     Json?    @map("lstm_results")
+  gruResultsJson      Json?    @map("gru_results")
+  transformerResultsJson Json? @map("transformer_results")
+  polynomialResultsJson Json?  @map("polynomial_results")
+  tradingSuggestionJson Json?  @map("trading_suggestion")
+  aiAnalysisJson        Json?  @map("ai_analysis")
+  plotUrlsJson        Json?    @map("plot_urls")
+  pdfReportUrl        String?  @map("pdf_report_url")
+  emailSentStatus     String?  @map("email_sent_status") // From FastAPI ML
+  
+  mlServiceMessage    String?  // The "message" field from FastAPI ML response
+
+  errorMessage        String?  // If Next.js itself fails or ML service indicates critical failure
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([stockSymbol, market])
+}
+
+enum RunStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  PARTIAL // Good to have for more granular status
+}
+
+
+
+
+// schema.prisma
+// ... (your existing models: User, PredictionRun, etc.) ...
+
+// ---------------------------------
+// LLM Stock Info Analysis Run Model
+// ---------------------------------
+model LlmAnalysisRun {
+  id            String   @id @default(cuid())
+  userId        Int?     // Optional: Link to a user if the request is authenticated
+  user          User?    @relation(fields: [userId], references: [id], name: "UserLlmAnalyses") // Explicit relation name
+  userQuery     String?   @map("user_query") // Add this line
+  // ...
+  stockSymbol   String   @map("stock_symbol")
+  market        String   // e.g., "INDIA", "US", "CRYPTO"
+  requestedAt   DateTime @default(now())
+
+  // Status and Completion
+  status        LlmRunStatus @default(PENDING)
+  completedAt   DateTime?
+  errorMessage  String?      @map("error_message")
+
+  // Input Data Snapshots (or references)
+  screenerDataSnapshot    Json?    @map("screener_data_snapshot") // Could store a summary or key points
+  nseMarketDataSnapshot Json?    @map("nse_market_data_snapshot") // Summary of NSE data used
+
+  // LLM Outputs
+  llmIdeaOutput         String?  @map("llm_idea_output")      // Text from the first Gemini call
+  llmReportOutput       String?  @db.Text @map("llm_report_output") // The detailed textual report (can be long)
+  llmConclusionJson     Json?    @map("llm_conclusion_json") // The final JSON conclusion
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([stockSymbol, market])
+}
+
+enum LlmRunStatus {
+  PENDING     // Request received, processing not started
+  FETCHING_DATA // Fetching Screener/NSE data
+  PROCESSING_LLM // LLM calls in progress
+  COMPLETED   // All steps successful
+  FAILED      // An error occurred during the process
+}

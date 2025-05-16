@@ -196,9 +196,57 @@ exports.Prisma.WatchlistScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.PredictionRunScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  stockSymbol: 'stockSymbol',
+  market: 'market',
+  runIdFromML: 'runIdFromML',
+  status: 'status',
+  requestedAt: 'requestedAt',
+  completedAt: 'completedAt',
+  lstmResultsJson: 'lstmResultsJson',
+  gruResultsJson: 'gruResultsJson',
+  transformerResultsJson: 'transformerResultsJson',
+  polynomialResultsJson: 'polynomialResultsJson',
+  tradingSuggestionJson: 'tradingSuggestionJson',
+  aiAnalysisJson: 'aiAnalysisJson',
+  plotUrlsJson: 'plotUrlsJson',
+  pdfReportUrl: 'pdfReportUrl',
+  emailSentStatus: 'emailSentStatus',
+  mlServiceMessage: 'mlServiceMessage',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LlmAnalysisRunScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  userQuery: 'userQuery',
+  stockSymbol: 'stockSymbol',
+  market: 'market',
+  requestedAt: 'requestedAt',
+  status: 'status',
+  completedAt: 'completedAt',
+  errorMessage: 'errorMessage',
+  screenerDataSnapshot: 'screenerDataSnapshot',
+  nseMarketDataSnapshot: 'nseMarketDataSnapshot',
+  llmIdeaOutput: 'llmIdeaOutput',
+  llmReportOutput: 'llmReportOutput',
+  llmConclusionJson: 'llmConclusionJson',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -209,6 +257,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.AuthMethod = exports.$Enums.AuthMethod = {
   GOOGLE: 'GOOGLE',
@@ -227,6 +281,22 @@ exports.WatchlistType = exports.$Enums.WatchlistType = {
   CRYPTO: 'CRYPTO'
 };
 
+exports.RunStatus = exports.$Enums.RunStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  PARTIAL: 'PARTIAL'
+};
+
+exports.LlmRunStatus = exports.$Enums.LlmRunStatus = {
+  PENDING: 'PENDING',
+  FETCHING_DATA: 'FETCHING_DATA',
+  PROCESSING_LLM: 'PROCESSING_LLM',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   ZerodhaAccount: 'ZerodhaAccount',
@@ -235,7 +305,9 @@ exports.Prisma.ModelName = {
   USStock: 'USStock',
   CryptoAsset: 'CryptoAsset',
   Portfolio: 'Portfolio',
-  Watchlist: 'Watchlist'
+  Watchlist: 'Watchlist',
+  PredictionRun: 'PredictionRun',
+  LlmAnalysisRun: 'LlmAnalysisRun'
 };
 
 /**

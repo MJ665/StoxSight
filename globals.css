@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/app/globals.css */
+@import "tailwindcss/preflight"; /* Replaces @tailwind base */
+@import "tailwindcss/utilities"; /* @tailwind components is gone, utilities includes what you need */
+
+/* Optional: Add some base body styling using Tailwind classes or custom CSS */
+body {
+  @apply bg-gray-900 text-gray-100 antialiased;
+}
+
+/* Or, if you prefer not to use @apply in globals.css for base body styles (sometimes recommended): */
+/*
+body {
+  background-color: #111827; // Equivalent to bg-gray-900
+  color: #f3f4f6; // Equivalent to text-gray-100
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*/

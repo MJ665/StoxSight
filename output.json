@@ -1,0 +1,362 @@
+curl -X POST http: //localhost:3000/api/llmStockInfo \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "for Tata consultency services What is the future outlook of this stock tell me indepth stock analysis?",
+    "symbol": "TCS",
+    "market": "INDIA"
+}'
+
+
+{
+    "success": true,
+    "result": "## Stox Sight: TCS Stock Analysis Report\n\n**1. Executive Summary:**\n\nBased on the available data, a comprehensive analysis of TCS's future outlook is not possible due to a critical error preventing the retrieval of financial data from NSE India.  Therefore, no definitive buy, sell, or hold recommendation can be provided.  The analysis below will highlight the limitations imposed by the missing data.\n\n\n**2. Company Overview:**\n\nDue to the absence of data from Screener.in, a company overview of Tata Consultancy Services (TCS) cannot be provided.\n\n\n**3. Detailed Analysis:**\n\n**Financial Health:**  No financial metrics (revenue, profit, debt, cash flow) are available from the provided Scraped Data.  Therefore, an assessment of TCS's financial health cannot be performed.\n\n**Valuation:**  The lack of financial data from Screener.in prevents the calculation and analysis of valuation metrics such as P/E and P/B ratios.  A comparison with peers is also impossible.\n\n**Pros & Cons:**  No pros and cons information for TCS has been provided.\n\n**Other Key Information:** No other relevant information is available due to missing Scraped Data.\n\n\n**4. Recommendation & Justification:**\n\nDue to the absence of crucial financial data, a clear buy, sell, or hold recommendation cannot be made for TCS.  Further monitoring is advised pending the acquisition of relevant financial information.\n\n\n**5. Potential Risks & Considerations:**\n\nGiven the lack of data, specific potential risks cannot be identified.  However, it is important to note that investing in any stock carries inherent market risks.  The absence of up-to-date financial information significantly limits the ability to assess the company’s performance and risk profile.\n\n**6. Important Disclaimer:**\n\nDisclaimer: This analysis is AI-generated for informational purposes only and is not financial advice. Stock market investments involve risks. Consult a qualified financial advisor before investing. Stox Sight is not liable for decisions based on this information.\n",
+    "conclusion": {
+        "symbol": "TCS",
+        "currentPriceNSE": "Data not available in provided context",
+        "overallSentimentScore": "Neutral",
+        "keyInsightsSummary": "Due to the lack of financial data from both Screener.in and NSE India, a comprehensive analysis and definitive investment recommendation for TCS are not possible. The absence of critical financial metrics and market data limits the ability to assess the company's financial health, valuation, and potential risks. Further monitoring is advised pending the acquisition of relevant data.",
+        "potentialActionableSignals": [
+            {
+                "indicatorType": "DataAvailability_Concern",
+                "signalStrength": "Strong High",
+                "description": "Critical error prevented the retrieval of financial data from NSE India and no data was available from Screener.in, indicating a severe lack of information for informed decision-making. This makes any investment decision highly speculative.",
+                "dataSources": [
+                    "Screener.in",
+                    "NSE India"
+                ],
+                "suggestedTimeframe": "Context Dependent"
+            },
+            {
+                "indicatorType": "Analysis_Impossibility",
+                "signalStrength": "Strong High",
+                "description": "The absence of crucial financial data, including revenue, profit, debt, and cash flow metrics from Screener.in, renders a fundamental analysis of TCS impossible. This includes valuation assessments and peer comparisons.",
+                "dataSources": [
+                    "Screener.in"
+                ],
+                "suggestedTimeframe": "Context Dependent"
+            }
+        ],
+        "entryPointConsiderations": {
+            "currentValuationAssessment": "Valuation assessment is not possible due to the absence of financial data from Screener.in and NSE India.",
+            "speculativeGoodPriceRangeLower": "Data not available in provided context",
+            "speculativeGoodPriceRangeUpper": "Data not available in provided context",
+            "technicalLevelsToWatchNSE": {
+                "recentDayLow": "Data not available in provided context",
+                "recentDayHigh": "Data not available in provided context",
+                "52WeekLow": "Data not available in provided context",
+                "52WeekHigh": "Data not available in provided context"
+            },
+            "rationale": "Entry points cannot be determined due to limited NSE market data and missing Screener.in data. Detailed technical entry points cannot be determined due to limited NSE market data provided."
+        },
+        "seasonalPatternsObserved": {
+            "typicallyStrongQuarters": [
+                "Insufficient data for reliable quarterly pattern identification (0 data points provided)."
+            ],
+            "typicallyWeakQuarters": [
+                "Insufficient data for reliable quarterly pattern identification (0 data points provided)."
+            ],
+            "monthlyTrendNotes": "No clear persistent monthly pattern observed from the limited NSE data."
+        },
+        "corporateActionsNSE": [],
+        "riskFactorsForTimingAndInvestment": [
+            "Absence of up-to-date financial information significantly limits the ability to assess the company’s performance and risk profile.",
+            "Given the lack of data, specific potential risks cannot be identified. Investing in any stock carries inherent market risks."
+        ],
+        "analystConsensusNSE": {
+            "recommendation": "Analyst consensus data not provided in the NSE summary.",
+            "numberOfAnalysts": "Analyst consensus data not provided in the NSE summary.",
+            "targetPriceMean": "Analyst consensus data not provided in the NSE summary."
+        },
+        "dataConfidenceLevel": "Low",
+        "finalWordOfCaution": "This AI synthesizes provided data to offer speculative insights. It does not possess real-time market awareness or professional financial advisory capabilities. All outputs are interpretations and estimations.",
+        "disclaimer": "IMPORTANT: This is an AI-generated speculative outlook based on limited historical data and analysis. It is NOT financial advice. Prices and market conditions can change rapidly. Consult a qualified financial advisor. Stox Sight is not liable for any decisions."
+    }
+}%         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl -X POST "https://mj665-stox-sight-ml-service.hf.space/train-predict/" \
+     -H "accept: application/json" \
+     -H "Content-Type: multipart/form-data" \
+     -F "csv_file=@/Users/meet/Desktop/stox-sight/csvGenerated/test_example.com/TCS_INDIA_YY2025MM05DD14_HH14MM23SS26.csv" \
+     -F "user_email_to_send_to=hackathon2mj@gmail.com"{
+    "message": "Processing complete.",
+    "run_id": "482ec54e-7340-4cf2-9c86-7b49af426462",
+    "stock_symbol": "TCS",
+    "lstm_results": {
+        "best_params": {
+            "activation": "tanh",
+            "dropout_rate": 0.33874006317859484,
+            "units": 114,
+            "learning_rate": 0.00015847101210439104
+        },
+        "test_metrics": {
+            "mae": 207.05571397972815,
+            "r2_score": 0.3967471884057172
+        },
+        "future_predictions": {
+            "2025-05-14": 3367.793212890625,
+            "2025-05-15": 3371.952392578125,
+            "2025-05-16": 3375.360595703125,
+            "2025-05-17": 3377.810791015625,
+            "2025-05-18": 3379.275634765625,
+            "2025-05-19": 3379.824951171875,
+            "2025-05-20": 3379.579833984375,
+            "2025-05-21": 3378.6767578125,
+            "2025-05-22": 3377.250244140625,
+            "2025-05-23": 3375.4208984375,
+            "2025-05-24": 3373.29345703125,
+            "2025-05-25": 3370.9541015625,
+            "2025-05-26": 3368.47265625,
+            "2025-05-27": 3365.900146484375,
+            "2025-05-28": 3363.2783203125,
+            "2025-05-29": 3360.635009765625,
+            "2025-05-30": 3357.990966796875,
+            "2025-05-31": 3355.36181640625,
+            "2025-06-01": 3352.755859375,
+            "2025-06-02": 3350.181884765625,
+            "2025-06-03": 3347.642578125,
+            "2025-06-04": 3345.1396484375,
+            "2025-06-05": 3342.67578125,
+            "2025-06-06": 3340.2490234375,
+            "2025-06-07": 3337.860107421875,
+            "2025-06-08": 3335.507080078125,
+            "2025-06-09": 3333.1904296875,
+            "2025-06-10": 3330.908447265625,
+            "2025-06-11": 3328.661376953125,
+            "2025-06-12": 3326.44775390625
+        },
+        "training_loss": [
+            0.06675709038972855,
+            0.015505954623222351
+        ]
+    },
+    "gru_results": {
+        "best_params": {
+            "activation": "tanh",
+            "dropout_rate": 0.33874006317859484,
+            "units": 114,
+            "learning_rate": 0.00015847101210439104
+        },
+        "test_metrics": {
+            "mae": 234.35929767367563,
+            "r2_score": 0.35222759725874575
+        },
+        "future_predictions": {
+            "2025-05-14": 3400.37890625,
+            "2025-05-15": 3396.31103515625,
+            "2025-05-16": 3385.09765625,
+            "2025-05-17": 3371.3828125,
+            "2025-05-18": 3357.28125,
+            "2025-05-19": 3343.66357421875,
+            "2025-05-20": 3330.840087890625,
+            "2025-05-21": 3318.883544921875,
+            "2025-05-22": 3307.7783203125,
+            "2025-05-23": 3297.475830078125,
+            "2025-05-24": 3287.923828125,
+            "2025-05-25": 3279.06640625,
+            "2025-05-26": 3270.853759765625,
+            "2025-05-27": 3263.237060546875,
+            "2025-05-28": 3256.175537109375,
+            "2025-05-29": 3249.626220703125,
+            "2025-05-30": 3243.5537109375,
+            "2025-05-31": 3237.921875,
+            "2025-06-01": 3232.69921875,
+            "2025-06-02": 3227.855224609375,
+            "2025-06-03": 3223.364013671875,
+            "2025-06-04": 3219.1982421875,
+            "2025-06-05": 3215.3349609375,
+            "2025-06-06": 3211.752685546875,
+            "2025-06-07": 3208.4296875,
+            "2025-06-08": 3205.3486328125,
+            "2025-06-09": 3202.490478515625,
+            "2025-06-10": 3199.840087890625,
+            "2025-06-11": 3197.382080078125,
+            "2025-06-12": 3195.102294921875
+        },
+        "training_loss": [
+            0.15292297303676605,
+            0.014377782121300697
+        ]
+    },
+    "transformer_results": {
+        "best_params": {
+            "dense_units": 26,
+            "dropout_rate": 0.19184977839317344,
+            "ff_dim": 55,
+            "num_heads": 2,
+            "num_transformer_blocks": 2,
+            "projection_dim": 32,
+            "learning_rate": 0.008706020878304856
+        },
+        "test_metrics": {
+            "mae": 724.4512584587012,
+            "r2_score": -4.949748263466289
+        },
+        "future_predictions": {
+            "2025-05-14": 3269.854248046875,
+            "2025-05-15": 3269.533935546875,
+            "2025-05-16": 3269.240234375,
+            "2025-05-17": 3268.949462890625,
+            "2025-05-18": 3268.67333984375,
+            "2025-05-19": 3268.384765625,
+            "2025-05-20": 3268.10693359375,
+            "2025-05-21": 3267.840087890625,
+            "2025-05-22": 3267.60986328125,
+            "2025-05-23": 3267.380126953125,
+            "2025-05-24": 3267.146240234375,
+            "2025-05-25": 3266.95947265625,
+            "2025-05-26": 3266.79248046875,
+            "2025-05-27": 3266.632568359375,
+            "2025-05-28": 3266.53076171875,
+            "2025-05-29": 3266.424072265625,
+            "2025-05-30": 3266.29931640625,
+            "2025-05-31": 3266.167236328125,
+            "2025-06-01": 3266.009765625,
+            "2025-06-02": 3265.8466796875,
+            "2025-06-03": 3265.693359375,
+            "2025-06-04": 3265.5458984375,
+            "2025-06-05": 3265.43017578125,
+            "2025-06-06": 3265.31201171875,
+            "2025-06-07": 3265.199951171875,
+            "2025-06-08": 3265.0615234375,
+            "2025-06-09": 3264.94873046875,
+            "2025-06-10": 3264.80419921875,
+            "2025-06-11": 3264.65185546875,
+            "2025-06-12": 3264.475341796875
+        },
+        "training_loss": [
+            0.16802506148815155,
+            0.06887586414813995
+        ]
+    },
+    "polynomial_results": {
+        "best_params": {},
+        "test_metrics": {
+            "mae": 822.6067106806975,
+            "r2_score": -11.440533804744922
+        },
+        "future_predictions": {
+            "2025-05-14": 6058.331523424607,
+            "2025-05-15": 6066.417028139247,
+            "2025-05-16": 6074.518457736718,
+            "2025-05-17": 6082.63582760967,
+            "2025-05-18": 6090.7691531507735,
+            "2025-05-19": 6098.918449752683,
+            "2025-05-20": 6107.08373280806,
+            "2025-05-21": 6115.265017709569,
+            "2025-05-22": 6123.462319849868,
+            "2025-05-23": 6131.675654621617,
+            "2025-05-24": 6139.905037417479,
+            "2025-05-25": 6148.150483630112,
+            "2025-05-26": 6156.412008652177,
+            "2025-05-27": 6164.689627876333,
+            "2025-05-28": 6172.983356695248,
+            "2025-05-29": 6181.293210501572,
+            "2025-05-30": 6189.619204687973,
+            "2025-05-31": 6197.961354647113,
+            "2025-06-01": 6206.319675771643,
+            "2025-06-02": 6214.694183454233,
+            "2025-06-03": 6223.08489308754,
+            "2025-06-04": 6231.491820064223,
+            "2025-06-05": 6239.914979776953,
+            "2025-06-06": 6248.35438761837,
+            "2025-06-07": 6256.810058981157,
+            "2025-06-08": 6265.282009257958,
+            "2025-06-09": 6273.770253841443,
+            "2025-06-10": 6282.274808124266,
+            "2025-06-11": 6290.795687499099,
+            "2025-06-12": 6299.332907358586
+        },
+        "training_loss": []
+    },
+    "trading_suggestion_tomorrow": {
+        "signal": "HOLD/NEUTRAL",
+        "predicted_price_lstm": 3367.793212890625,
+        "last_actual_price": 3515.0,
+        "percentage_change": -4.18795980396515
+    },
+    "ai_qualitative_analysis": {
+        "stockSymbol": "TCS",
+        "analysisDate": "2025-05-14",
+        "overallSentiment": "Neutral",
+        "sentimentRationale": "The models show mixed signals. While the Polynomial Regression model predicts significant growth, the LSTM, GRU, and Transformer models suggest a relatively stable or slightly downward trend in the short term.  The trading suggestion is neutral, further supporting a cautious outlook.",
+        "dataSummary": {
+            "lastActualClose": "3515.00",
+            "lastActualDate": "2025-05-13"
+        },
+        "lstmModelAnalysis": {
+            "performanceOnTest": "The LSTM model shows some divergence from actual values during the test period, suggesting it might not perfectly capture short-term fluctuations.",
+            "futureOutlook": "Predicts a slight downward trend in the next few weeks, with prices hovering around 3370.",
+            "confidenceInOutlook": "Medium"
+        },
+        "gruModelAnalysis": {
+            "bestParamsFound": {
+                "activation": "tanh",
+                "dropout_rate": 0.33874006317859484,
+                "units": 114,
+                "learning_rate": 0.00015847101210439104
+            },
+            "performanceOnTest": "Similar to LSTM, the GRU model shows some deviation from actual prices in the test set, indicating limitations in capturing short-term volatility.",
+            "futureOutlook": "The GRU also forecasts a downward trend, slightly more pronounced than the LSTM's prediction, with prices potentially dropping below 3300 within the next few weeks.",
+            "confidenceInOutlook": "Medium"
+        },
+        "transformerModelAnalysis": {
+            "bestParamsFound": {
+                "dense_units": 26,
+                "dropout_rate": 0.19184977839317344,
+                "ff_dim": 55,
+                "num_heads": 2,
+                "num_transformer_blocks": 2,
+                "projection_dim": 32,
+                "learning_rate": 0.008706020878304856
+            },
+            "performanceOnTest": "The Transformer model exhibits a consistently low prediction throughout the test period, demonstrating a poor fit to the actual price movements. It fails to capture the general trend.",
+            "futureOutlook": "Predicts a relatively flat trajectory around 3270, indicating very little change in price in the coming weeks.",
+            "confidenceInOutlook": "Low"
+        },
+        "polynomialRegressionAnalysis": {
+            "performanceOnTest": "The Polynomial Regression model captures the general upward trend observed in the test set but struggles with sharp price changes.",
+            "futureOutlook": "Predicts substantial growth in the coming weeks, with prices potentially exceeding 6000 based on the extrapolation of its polynomial trendline.",
+            "confidenceInOutlook": "Low"
+        },
+        "combinedOutlook": {
+            "shortTermForecastSynopsis": "The short-term forecast is uncertain.  The LSTM and GRU models predict a slight to moderate downward trend, while the Polynomial Regression model projects significant upward movement. The Transformer model shows a near flatline prediction. The disagreement between models highlights the uncertainty in the short-term outlook.",
+            "keyObservations": [
+                "Observation 1: Significant divergence exists between the Polynomial Regression predictions and the LSTM, GRU, and Transformer model predictions.",
+                "Observation 2: LSTM and GRU models provide relatively consistent, though not highly accurate, predictions within their respective ranges.",
+                "Observation 3: The 'HOLD/NEUTRAL' trading suggestion from the LSTM model reflects the model's limited confidence in predicting a significant price movement.",
+                "Observation 4: The Transformer model's poor performance suggests it may not be suitable for predicting TCS's stock price."
+            ]
+        },
+        "riskFactors": [
+            "Model-based predictions are inherently uncertain and based on past data, which may not reflect future market conditions.",
+            "Polynomial regression is prone to poor extrapolation beyond the observed data range, especially with higher degrees.",
+            "LSTM and GRU models can be sensitive to input data and may not capture sudden market shocks or events not present in training data.",
+            "The 'HOLD/NEUTRAL' suggestion is a simple heuristic and not comprehensive financial advice."
+        ],
+        "disclaimer": "This AI-generated analysis is for informational purposes only and not financial advice. Predictions are speculative. Consult a qualified financial advisor before making investment decisions."
+    },
+    "plot_urls": {
+        "lstm_test_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_lstm_test_predictions.png",
+        "lstm_future_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_lstm_future_predictions.png",
+        "gru_test_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_gru_test_predictions.png",
+        "gru_future_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_gru_future_predictions.png",
+        "transformer_test_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_transformer_test_predictions.png",
+        "transformer_future_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_transformer_future_predictions.png",
+        "polynomial_plot_url": "/outputs/plots/482ec54e-7340-4cf2-9c86-7b49af426462_polynomial_regression.png"
+    },
+    "pdf_report_url": "/outputs/pdfs/482ec54e-7340-4cf2-9c86-7b49af426462_report.pdf",
+    "email_sent_status": "Not attempted"
+}%                                                                                                  

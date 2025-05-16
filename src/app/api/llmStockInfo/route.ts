@@ -1,4 +1,404 @@
+// // src/app/api/llmStockInfo/route.ts
+// import { NextRequest, NextResponse } from 'next/server';
+// import { NseIndia } from 'stock-nse-india';
+// import { PrismaClient, LlmRunStatus } from '@/generated/prisma'; // USE LlmRunStatus
+// import { getServerSession } from 'next-auth/next';
+// import { NEXT_AUTH } from '@/app/api/lib/auth';
 
+// import { scrapeWithDefuddle } from "./defuddleService";
+// import { indInstructionIdea, indInstructionRes, indInstructionConclude } from "./instructions";
+// import { GoogleGenerativeAI, GenerationConfig, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+
+// const prisma = new PrismaClient();
+// const nseIndia = new NseIndia();
+
+// const API_KEYS = {
+//   IDEA: process.env.GOOGLE_API_ONE_IDEA_GENERATOR as string,
+//   RESPONSE: process.env.GOOGLE_API_TWO_RESPONCE_GENERATOR as string,
+//   CONCLUDE: process.env.GOOGLE_API_THREE_CROSS_VALIDATION_BETTER_RESPONCE as string,
+// };
+
+// // fetchFromGeminiAPI and fetchFromGeminiAPIConclusion functions remain the same
+// async function fetchFromGeminiAPI(prompt: string, apiKey: string): Promise<string> {
+//   if (!apiKey) { console.error("Gemini API key is missing."); throw new Error("Missing Gemini API key"); }
+//   try {
+//     const genAI = new GoogleGenerativeAI(apiKey);
+//     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Using Flash for these text steps
+//     const result = await model.generateContent(prompt);
+//     return result.response.text() || "NOT ABLE TO GET RESPONSE FROM GEMINI (TEXT)";
+//   } catch (error) {
+//     console.error("Error fetching text from Gemini API:", error);
+//     return `Error processing request with Gemini: ${error instanceof Error ? error.message : String(error)}`;
+//   }
+// }
+
+// async function fetchFromGeminiAPIConclusion(prompt: string, apiKey: string): Promise<object | string> {
+//   if (!apiKey) { console.error("Gemini API key for conclusion missing."); throw new Error("Missing Gemini API key for conclusion"); }
+//   try {
+//     const genAI = new GoogleGenerativeAI(apiKey);
+//     const model = genAI.getGenerativeModel({
+//       model: "gemini-1.5-flash", // Pro for better JSON
+//       generationConfig: { responseMimeType: "application/json" } as GenerationConfig,
+//       safetySettings: [
+//         { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+//         { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+//         { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
+//         { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+//       ],
+//     });
+//     const result = await model.generateContent(prompt);
+//     const responseText = result.response.text();
+//     try {
+//       return JSON.parse(responseText);
+//     } catch (parseError) {
+//       console.error("Failed to parse Gemini's conclusion as JSON in fetchFromGeminiAPIConclusion:", parseError, "\nRaw:", responseText);
+//       return `Failed to parse JSON. Raw output from Gemini: ${responseText}`;
+//     }
+//   } catch (error) {
+//     console.error("Error in fetchFromGeminiAPIConclusion (API call):", error);
+//     return `Error from Gemini (Conclusion/JSON): ${error instanceof Error ? error.message : String(error)}`;
+//   }
+// }
+
+// async function getMinimalNseDataForLLM(symbol: string): Promise<object | string> {
+//     try {
+//         const details = await nseIndia.getEquityDetails(symbol.toUpperCase());
+//         if (details && details.priceInfo) {
+//             return {
+//                 lastPrice: details.priceInfo.lastPrice, change: details.priceInfo.change,
+//                 pChange: details.priceInfo.pChange, previousClose: details.priceInfo.previousClose,
+//                 open: details.priceInfo.open, dayHigh: details.priceInfo.high, dayLow: details.priceInfo.low,
+//                 weekHighLow: details.priceInfo.weekHighLow, companyName: details.info?.companyName,
+//             };
+//         }
+//         return "Limited NSE price details available.";
+//     } catch (e) {
+//         console.warn(`[llmStockInfo] Minor error fetching NSE details for ${symbol}: ${e}`);
+//         return `Error fetching NSE market data for ${symbol}. Analysis may be limited.`;
+//     }
+// }
+
+// export async function POST(req: NextRequest) {
+//     const session = await getServerSession(NEXT_AUTH);
+//     let currentUserId: number | undefined = undefined;
+
+//     if (session?.user?.id) {
+//         const parsedId = parseInt(session.user.id as string, 10);
+//         if (!isNaN(parsedId)) {
+//             currentUserId = parsedId;
+//         } else {
+//             console.warn("[llmStockInfo POST] Could not parse user ID from session:", session.user.id);
+//         }
+//     }
+
+//     let requestBody;
+//     try {
+//         requestBody = await req.json();
+//     } catch (e) {
+//         return NextResponse.json({ success: false, message: "Invalid JSON request body." }, { status: 400 });
+//     }
+
+//     const { query, symbol, market } = requestBody;
+
+//     if (!query || !symbol || !market) {
+//         return NextResponse.json({ success: false, msg: "Query, symbol, and market are required." }, { status: 400 });
+//     }
+//     if (market.toUpperCase() !== "INDIA") {
+//         return NextResponse.json({ success: false, msg: `Market type '${market}' is not currently supported for LLM analysis.` }, { status: 400 });
+//     }
+
+//     let llmAnalysisRunEntry; // Use LlmAnalysisRun
+//     try {
+//         llmAnalysisRunEntry = await prisma.llmAnalysisRun.create({ // CHANGED HERE
+//             data: {
+//                 userId: currentUserId,
+//                 userQuery: query, // Store the user's query
+//                 stockSymbol: symbol.toUpperCase(),
+//                 market: market.toUpperCase(),
+//                 status: LlmRunStatus.FETCHING_DATA, // Initial status
+//                 requestedAt: new Date(),
+//             },
+//         });
+//         console.log(`[llmStockInfo POST] Created FETCHING_DATA LlmAnalysisRun ID: ${llmAnalysisRunEntry.id} for ${symbol}`);
+//     } catch (dbError) {
+//         console.error(`[llmStockInfo POST] Error creating initial LlmAnalysisRun for ${symbol}:`, dbError);
+//         return NextResponse.json({ success: false, message: "Failed to initiate analysis job.", internalError: "DB_INIT_FAILED" }, { status: 500 });
+//     }
+
+//     let screenerContent: string | object = "Screener data not fetched."; // Initialize
+//     let nseDataResult: object | string = "NSE data not fetched."; // Initialize
+//     let nseMarketDataString = "NSE Data not available for context.";
+
+//     try {
+//         screenerContent = await scrapeWithDefuddle(symbol, "SCREENER") || "Fundamental data from Screener.in was not available or scraping failed.";
+        
+//         nseDataResult = await getMinimalNseDataForLLM(symbol);
+//         nseMarketDataString = typeof nseDataResult === 'string' 
+//             ? nseDataResult 
+//             : `\n\n--- NSE India Market Data Snippet for ${symbol} ---\n` +
+//               JSON.stringify(nseDataResult, null, 2) +
+//               "\n--- End of NSE India Market Data Snippet ---\n";
+
+//         await prisma.llmAnalysisRun.update({ // Update status and data snapshots
+//             where: { id: llmAnalysisRunEntry.id },
+//             data: {
+//                 status: LlmRunStatus.PROCESSING_LLM,
+//                 screenerDataSnapshot: typeof screenerContent === 'string' ? { message: screenerContent } : (screenerContent as any),
+//                 nseMarketDataSnapshot: typeof nseDataResult === 'string' ? { message: nseDataResult } : (nseDataResult as any),
+//             }
+//         });
+
+//         const ideaPrompt = `... ${indInstructionIdea} ... User Query: ${query} ... Stock Symbol: ${symbol} ... Screener.in Content: ${typeof screenerContent === 'string' ? screenerContent : JSON.stringify(screenerContent)} ... NSE Market Data Snapshot: ${nseMarketDataString} ...`;
+//         const idea = await fetchFromGeminiAPI(ideaPrompt, API_KEYS.IDEA);
+
+//         const resPrompt = `... ${indInstructionRes} ... User Original Query: ${query} ... Stock Symbol: ${symbol} ... Market: ${market} ... Screener.in Content: ${typeof screenerContent === 'string' ? screenerContent : JSON.stringify(screenerContent)} ... NSE Market Data Snapshot: ${nseMarketDataString} ... Key Themes/Initial Ideas: ${idea} ...`;
+//         const finalResponseText = await fetchFromGeminiAPI(resPrompt, API_KEYS.RESPONSE);
+
+//         const concludePrompt = `... ${indInstructionConclude} ... User Original Query: ${query} ... Screener.in Content: ${typeof screenerContent === 'string' ? screenerContent : JSON.stringify(screenerContent)} ... NSE Market Data Snapshot: ${nseMarketDataString} ... Key Themes/Initial Ideas: ${idea} ... Detailed Stock Analysis Report: ${finalResponseText} ...`;
+//         const conclusionResultOrErrorStr = await fetchFromGeminiAPIConclusion(concludePrompt, API_KEYS.CONCLUDE);
+
+//         let conclusionJson: any = null;
+//         let processingErrorMsg: string | null = null;
+
+//         if (typeof conclusionResultOrErrorStr === 'string' || (typeof conclusionResultOrErrorStr === 'object' && conclusionResultOrErrorStr !== null && 'error' in conclusionResultOrErrorStr)) {
+//             processingErrorMsg = typeof conclusionResultOrErrorStr === 'string' ? conclusionResultOrErrorStr : (conclusionResultOrErrorStr as any).error;
+//             conclusionJson = { error: "Conclusion generation failed or returned error.", details: processingErrorMsg };
+//         } else {
+//             conclusionJson = conclusionResultOrErrorStr;
+//         }
+
+//         const finalStatus = processingErrorMsg ? LlmRunStatus.FAILED : LlmRunStatus.COMPLETED;
+//         await prisma.llmAnalysisRun.update({ // CHANGED HERE
+//             where: { id: llmAnalysisRunEntry.id },
+//             data: {
+//                 status: finalStatus,
+//                 completedAt: new Date(),
+//                 llmIdeaOutput: idea,
+//                 llmReportOutput: finalResponseText,
+//                 llmConclusionJson: conclusionJson,
+//                 errorMessage: processingErrorMsg,
+//             },
+//         });
+//         console.log(`[llmStockInfo POST] Updated LlmAnalysisRun ID: ${llmAnalysisRunEntry.id} to ${finalStatus}.`);
+
+//         if (finalStatus === LlmRunStatus.FAILED) {
+//              return NextResponse.json({ success: false, message: "LLM analysis processing failed.", runId: llmAnalysisRunEntry.id, details: processingErrorMsg }, { status: 500 });
+//         }
+
+//         return NextResponse.json({
+//             success: true,
+//             runId: llmAnalysisRunEntry.id,
+//             result: finalResponseText,
+//             conclusion: conclusionJson
+//         }, { status: 200 });
+
+//     } catch (error: any) {
+//         console.error(`[llmStockInfo POST] Error during LLM processing for LlmAnalysisRun ID ${llmAnalysisRunEntry?.id || 'N/A'}:`, error);
+//         if (llmAnalysisRunEntry) {
+//             try {
+//                 await prisma.llmAnalysisRun.update({ // CHANGED HERE
+//                     where: { id: llmAnalysisRunEntry.id },
+//                     data: {
+//                         status: LlmRunStatus.FAILED,
+//                         errorMessage: error.message || String(error),
+//                         completedAt: new Date(),
+//                     },
+//                 });
+//             } catch (updateError) {
+//                 console.error(`[llmStockInfo POST] CRITICAL: Failed to update LlmAnalysisRun status to FAILED for ${llmAnalysisRunEntry.id}:`, updateError);
+//             }
+//         }
+//         return NextResponse.json({ success: false, message: "Failed to process LLM analysis request.", details: error.message || String(error) }, { status: 500 });
+//     }
+// }
+
+// export async function GET(req: NextRequest) {
+//     const session = await getServerSession(NEXT_AUTH);
+//     let currentUserId: number | undefined = undefined;
+
+//     if (session?.user?.id) {
+//         const parsedId = parseInt(session.user.id as string, 10);
+//         if (!isNaN(parsedId)) {
+//             currentUserId = parsedId;
+//         }
+//     }
+
+//     try {
+//         let analysisRuns;
+//         if (currentUserId !== undefined) {
+//             console.log(`[llmStockInfo GET] Fetching LlmAnalysisRuns for user ID: ${currentUserId}`);
+//             analysisRuns = await prisma.llmAnalysisRun.findMany({ // CHANGED HERE
+//                 where: { userId: currentUserId },
+//                 orderBy: { requestedAt: 'desc' },
+//                 take: 50,
+//             });
+//         } else {
+//             console.log("[llmStockInfo GET] No user session, fetching recent public/anonymous LlmAnalysisRuns.");
+//             analysisRuns = await prisma.llmAnalysisRun.findMany({ // CHANGED HERE
+//                 where: { userId: null }, // Or remove where clause to fetch all if that's desired for anon
+//                 orderBy: { requestedAt: 'desc' },
+//                 take: 20,
+//             });
+//         }
+//         return NextResponse.json({ success: true, data: analysisRuns }, { status: 200 });
+//     } catch (error: any) {
+//         console.error("[llmStockInfo GET] Error fetching LlmAnalysisRuns:", error);
+//         return NextResponse.json({ success: false, message: "Failed to fetch analysis runs.", details: error.message }, { status: 500 });
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/app/api/llmStockInfo/route.ts
 
 const API_KEYS = {
   IDEA: process.env.GOOGLE_API_ONE_IDEA_GENERATOR as string,
@@ -80,86 +480,6 @@ const text = result.response.text();
     return `Error processing request with Gemini: ${error instanceof Error ? error.message : String(error)}`;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to call the Python script
-async function getYahooFinanceData(symbol: string, market: string): Promise<object | null> {
-  return new Promise((resolve, reject) => {
-    const pythonScriptPath = path.join(process.cwd(), "src", "app", "api", "llmStockInfo", "yFinance.py");
-    
-    // Adjust symbol for Yahoo Finance (e.g., add .NS for Indian NSE stocks)
-    let yfSymbol = symbol;
-    if (market === "INDIA" && !symbol.endsWith(".NS") && !symbol.endsWith(".BO")) {
-      yfSymbol = `${symbol}.NS`; // Default to NSE for India
-    }
-    // Add more rules for other markets if needed, e.g., US stocks don't need a suffix typically
-
-    console.log(`Calling yFinance.py with symbol: ${yfSymbol}`);
-    const pythonProcess = spawn("python3", [pythonScriptPath, yfSymbol]); // Use 'python' or 'python3' based on your env
-
-    let rawData = "";
-    let errorData = "";
-
-    pythonProcess.stdout.on("data", (data) => {
-      rawData += data.toString();
-    });
-
-    pythonProcess.stderr.on("data", (data) => {
-      errorData += data.toString();
-    });
-
-    pythonProcess.on("close", (code) => {
-      if (code !== 0) {
-        console.error(`yFinance.py script exited with code ${code}: ${errorData}`);
-        reject(new Error(`Yahoo Finance script error: ${errorData || `Exit code ${code}`}`));
-        return;
-      }
-      try {
-        // console.log("Raw yFinance data:", rawData); // for debugging
-        const jsonData = JSON.parse(rawData);
-        if (jsonData.error) {
-            console.warn(`Yahoo Finance data fetch for ${yfSymbol} returned an error in its JSON: ${jsonData.error}`);
-            // Resolve with the error object from yfinance so LLM can see it
-            resolve(jsonData);
-        } else {
-            resolve(jsonData);
-        }
-      } catch (e) {
-        console.error("Failed to parse JSON from yFinance.py:", e, "\nRaw data:", rawData);
-        reject(new Error("Failed to parse Yahoo Finance data."));
-      }
-    });
-
-    pythonProcess.on("error", (err) => {
-        console.error("Failed to start yFinance.py subprocess:", err);
-        reject(new Error("Failed to start Yahoo Finance script subprocess."));
-    });
-  });
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -400,6 +720,166 @@ console.log(`Full nseMarketDataString being sent to conclude prompt: ${nseMarket
     return NextResponse.json({ success: false, msg: "An unexpected error occurred on the server.", err: error instanceof Error ? error.message : String(error) }, { status: 500 });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@ export async function scrapeWithDefuddle (stockSymbol :string, webName:string){
      
     try {
 
-    
+    z
 if (webName == "SCREENER") {
     const websiteURL = `https://www.screener.in/company/${stockSymbol}/consolidated/`
 
