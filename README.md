@@ -8,6 +8,10 @@ StoxSight is a B.Tech project aiming to provide users with advanced stock and cr
 Live Demo (Frontend): [YOUR_NEXTJS_APP_VERCEL_DEPLOYMENT_URL_HERE] (e.g., https://stox-sight.vercel.app)
 ML Service API (Backend): https://mj665-stox-sight-ml-service.hf.space
 
+
+
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1085158653?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Intro Video - Made with Clipchamp"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
 Features
 
 LLM-Powered Stock Analysis: Get in-depth qualitative analysis and structured insights for Indian stocks based on user queries, fundamental data (from Screener.in), and market data (from NSE India).
